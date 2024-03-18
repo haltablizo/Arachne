@@ -12,11 +12,12 @@ public class Arachne extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/Overworld.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        
         stage.show();
     }
 
