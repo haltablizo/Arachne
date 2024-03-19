@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package controllers;
 
 import java.io.IOException;
@@ -15,20 +12,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Huawei
- */
-public class MainMenuController implements Initializable {
-
+public class InventoryController implements Initializable {
+   
     
-    @FXML Button exitButton, newGameButton; 
+    @FXML Button closeInvButton;
     
     @FXML 
-    private void newGame (ActionEvent event) throws IOException {
+    private void closeInv(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
         Parent root = loader.load(); 
         OverworldController controller = loader.getController();
@@ -39,12 +32,7 @@ public class MainMenuController implements Initializable {
         thisStage.setScene(subjectScene);
         thisStage.show();
     }
-    @FXML
-    private void exitGame (ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
-        stage.close(); 
-        
-    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
