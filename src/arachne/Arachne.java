@@ -18,7 +18,11 @@ public class Arachne extends Application {
         
         stage.setScene(scene);
         
-        stage.show();
+       
+        root.setFocusTraversable(false);
+        
+        stage.show();        
+
     }
 
     public static void main(String[] args) {
