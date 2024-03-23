@@ -29,6 +29,11 @@ public class OverworldController implements Initializable {
     Image img = new Image("/images/placeholderIcon.png", 250, 250, false, false); 
     ImageView im = new ImageView(img);
     
+    String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
+    private int coordX = 0;     
+    private int coordY = 0;
+    private int index; 
+    
     @FXML
     private void openInv(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml"));
@@ -46,30 +51,39 @@ public class OverworldController implements Initializable {
     
     @FXML 
     private void tesdt(KeyEvent event) {
+        grid.getChildren().remove(im);
+        
+        
         switch(event.getCode()) {
             case W:
-                System.out.println("up");
+                coordY--; 
+                index = 0; 
                 break;
             case A:
-                System.out.println("left");
+                coordX--;
+                index = 1; 
+
                 break;     
-            case S:                
-                System.out.println("down");
+            case S:    
+                coordY++;
+                index = 2; 
                 break;
             case D:
-                System.out.println("right");
+                coordX++; 
+                index = 3; 
                 break;
             default: 
                 break;
         }
+        
+        img = new Image(fn[index], 250, 250, false, false); 
+        im = new ImageView(img);
+        grid.add(im, coordX, coordY);
     }    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        grid.add(im, 0, 1);        
-        grid.add(im, 0, 0);
-
-
+        grid.add(im, coordX, coordY);
     }   
     
 }
