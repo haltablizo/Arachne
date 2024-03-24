@@ -1,24 +1,24 @@
 
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import static javafx.scene.input.KeyCode.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -26,9 +26,19 @@ public class OverworldController implements Initializable {
 
     @FXML GridPane grid; 
     @FXML ImageView inventoryIcon;
-    Image img = new Image("/images/placeholderIcon.png", 250, 250, false, false); 
+    
+    String musicFile = "/music/overworldBgMusic.mp3";
+    Media sound = new Media(getClass().getResource(musicFile).toExternalForm());
+    MediaPlayer bgMusic = new MediaPlayer(sound);
+    
+    Image img = new Image("/images/charIcons/down.png", 250, 250, false, false); 
     ImageView im = new ImageView(img);
     
+    Image spidImg = new Image("images/spiderIcon.png", 250, 250, false, false); 
+    ImageView spider = new ImageView(spidImg);
+    private int spidCoordX = 2; 
+    private int spidCoordY = 1; 
+
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
     private int coordX = 0;     
     private int coordY = 0;
@@ -50,7 +60,7 @@ public class OverworldController implements Initializable {
     }
     
     @FXML 
-    private void tesdt(KeyEvent event) {
+    private void movement(KeyEvent event) throws IOException {
         grid.getChildren().remove(im);
         
         
@@ -76,6 +86,19 @@ public class OverworldController implements Initializable {
                 break;
         }
         
+        if (coordX == spidCoordX && coordY == spidCoordY) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
+            Parent root = loader.load();
+            SpiderBattleController controller = loader.getController();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+        }
+        
         img = new Image(fn[index], 250, 250, false, false); 
         im = new ImageView(img);
         grid.add(im, coordX, coordY);
@@ -83,7 +106,10 @@ public class OverworldController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bgMusic.play();
         grid.add(im, coordX, coordY);
+        grid.add(spider, spidCoordX, spidCoordY);
+        
     }   
     
 }
