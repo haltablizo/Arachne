@@ -1,9 +1,13 @@
 
 package controllers;
 
+import arachne.Spider;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,13 +16,33 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
 public class SpiderBattleController implements Initializable {
 
 
-    @FXML Button runButton; 
+    @FXML Button runButton, atkButton; 
+    @FXML ImageView opponentIcon; 
+    private Spider spid; 
+    
+    public void setSpider(Spider s) {
+        this.spid = s; 
+        opponentIcon.setImage(new Image(spid.getNeutralIcon(), 450, 450, false, false));
+        
+    }
+    
+    @FXML void attack(ActionEvent event) throws InterruptedException {
+        
+        opponentIcon.setImage(new Image(spid.getAttackedIcon(), 450, 450, false, false));
+        
+        //opponentIcon.setImage(new Image(spid.getAttackingIcon(), 450, 450, false, false));
+        
+        //opponentIcon.setImage(new Image(spid.getNeutralIcon(), 450, 450, false, false));
+
+    }
     
     @FXML 
     private void runAway(ActionEvent event) throws IOException {
@@ -38,7 +62,7 @@ public class SpiderBattleController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+       
     }    
     
 }

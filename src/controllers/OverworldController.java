@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Spider;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -36,8 +37,8 @@ public class OverworldController implements Initializable {
     
     Image spidImg = new Image("images/spiderIcon.png", 250, 250, false, false); 
     ImageView spider = new ImageView(spidImg);
-    private int spidCoordX = 2; 
-    private int spidCoordY = 1; 
+    private int calCoordX = 2; 
+    private int calCoordY = 1; 
 
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
     private int coordX = 0;     
@@ -86,10 +87,13 @@ public class OverworldController implements Initializable {
                 break;
         }
         
-        if (coordX == spidCoordX && coordY == spidCoordY) {
+        if (coordX == calCoordX && coordY == calCoordY) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
             Parent root = loader.load();
             SpiderBattleController controller = loader.getController();
+            Spider calamari = new Spider("Calamari", 1, 10, 30, 5);
+            calamari.setIcons("/images/calamari/neutralIcon.png", "/images/calamari/attackedIcon.png", "/images/calamari/attackingIcon.png");
+            controller.setSpider(calamari);
 
             Scene subjectScene = new Scene(root);
             Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -106,9 +110,9 @@ public class OverworldController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        bgMusic.play();
+        //bgMusic.play();
         grid.add(im, coordX, coordY);
-        grid.add(spider, spidCoordX, spidCoordY);
+        grid.add(spider, calCoordX, calCoordY);
         
     }   
     
