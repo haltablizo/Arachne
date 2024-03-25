@@ -48,6 +48,7 @@ public class InventoryController implements Initializable {
             Parent root = loader.load(); 
             SpiderBattleController controller = loader.getController();
             Spider calamari = new Spider("Calamari", 1, 10, 30, 5);
+            calamari.setIcons("/images/calamari/neutralIcon.png", "/images/calamari/attackedIcon.png", "/images/calamari/attackingIcon.png");
             controller.setSpider(calamari);
             
             Scene subjectScene = new Scene(root);

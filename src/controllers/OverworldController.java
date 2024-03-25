@@ -84,6 +84,16 @@ public class OverworldController implements Initializable {
                 coordX++; 
                 index = 3; 
                 break;
+            case ESCAPE: 
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/MainMenu.fxml"));
+                Parent root = loader.load();
+
+                Scene subjectScene = new Scene(root);
+                Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStage.hide();
+                thisStage.setScene(subjectScene);
+                thisStage.show();
+                break; 
             default: 
                 break;
         }
