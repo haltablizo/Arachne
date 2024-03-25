@@ -9,10 +9,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="750" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
     <children>
-      <Pane prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: gray;" />
+      <Pane prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: #7da6cf;" />
       <BorderPane prefHeight="750.0" prefWidth="1000.0">
          <left>
-            <VBox alignment="CENTER" prefHeight="750.0" prefWidth="250.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="750.0" prefWidth="250.0" spacing="20.0" style="-fx-background-color: #fff9a2;">
                <children>
                   <Button fx:id="newGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#newGame" prefHeight="53.0" prefWidth="129.0" text="NEW GAME">
                      <font>

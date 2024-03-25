@@ -12,7 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MainMenuController implements Initializable {
@@ -22,6 +26,17 @@ public class MainMenuController implements Initializable {
     
     @FXML 
     private void newGame (ActionEvent event) throws IOException {
+        Alert usernameAlert = new Alert(AlertType.CONFIRMATION);
+        usernameAlert.setTitle("New Game");
+        usernameAlert.setHeaderText("Enter your username:");
+
+        TextField usernameField = new TextField();
+        Label usernameLabel = new Label("Username:");
+        usernameAlert.getDialogPane().setContent(usernameLabel);
+        usernameAlert.getDialogPane().setContent(usernameField);
+        
+        usernameAlert.showAndWait();
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
         Parent root = loader.load(); 
         OverworldController controller = loader.getController();

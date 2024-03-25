@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Spider;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,21 +32,31 @@ public class InventoryController implements Initializable {
     @FXML 
     private void closeInv(ActionEvent event) throws IOException {
         FXMLLoader loader; 
+        
         if (openedFrom.equals("Overworld")) {
             loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+            Parent root = loader.load();
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+            root.requestFocus();
         }
         else {
             loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
+            Parent root = loader.load(); 
+            SpiderBattleController controller = loader.getController();
+            Spider calamari = new Spider("Calamari", 1, 10, 30, 5);
+            controller.setSpider(calamari);
+            
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+            root.requestFocus();
         }
-        Parent root = loader.load(); 
-        
-        Scene subjectScene = new Scene(root);
-        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        thisStage.hide();
-        thisStage.setScene(subjectScene);
-        thisStage.show();
-        
-        root.requestFocus();
     }
     
     @Override
