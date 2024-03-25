@@ -50,6 +50,7 @@ public class OverworldController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml"));
         Parent root = loader.load(); 
         InventoryController controller = loader.getController();
+        controller.setOpenedFrom("Overworld");
         
         Scene subjectScene = new Scene(root);
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

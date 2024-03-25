@@ -28,6 +28,7 @@ public class SpiderBattleController implements Initializable {
     @FXML ImageView opponentIcon; 
     private Spider spid; 
     
+    
     public void setSpider(Spider s) {
         this.spid = s; 
         opponentIcon.setImage(new Image(spid.getNeutralIcon(), 450, 450, false, false));
@@ -37,16 +38,11 @@ public class SpiderBattleController implements Initializable {
     @FXML void attack(ActionEvent event) throws InterruptedException {
         
         opponentIcon.setImage(new Image(spid.getAttackedIcon(), 450, 450, false, false));
-        
-        //opponentIcon.setImage(new Image(spid.getAttackingIcon(), 450, 450, false, false));
-        
-        //opponentIcon.setImage(new Image(spid.getNeutralIcon(), 450, 450, false, false));
-
     }
     
     @FXML 
     private void runAway(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml")); 
         Parent root = loader.load(); 
         OverworldController controller = loader.getController();
         
@@ -58,6 +54,20 @@ public class SpiderBattleController implements Initializable {
         
         root.setFocusTraversable(true);
         root.requestFocus();
+    }
+    
+    @FXML
+    private void openInv(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml")); 
+        Parent root = loader.load(); 
+        InventoryController controller = loader.getController();
+        controller.setOpenedFrom("SpiderBattle");        
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+               
     }
     
     @Override

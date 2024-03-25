@@ -13,29 +13,49 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class InventoryController implements Initializable {
    
     
-    @FXML Button closeInvButton;
+    @FXML Button useButton, dropButton;
+    @FXML ImageView itemImage; 
+    @FXML Label itemDesc, itemName; 
+    private String openedFrom; 
+    
+    public void setOpenedFrom(String s) {
+        openedFrom = s;
+    }
     
     @FXML 
     private void closeInv(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+        FXMLLoader loader; 
+        if (openedFrom.equals("Overworld")) {
+            loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+        }
+        else {
+            loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
+        }
         Parent root = loader.load(); 
-        OverworldController controller = loader.getController();
         
         Scene subjectScene = new Scene(root);
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         thisStage.hide();
         thisStage.setScene(subjectScene);
         thisStage.show();
+        
+        root.requestFocus();
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        itemImage.setImage(null);
+        itemName.setText("");        
+        itemDesc.setText("");
+
+        useButton.setVisible(false);
+        dropButton.setVisible(false);
     }    
     
 }

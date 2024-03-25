@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package controllers;
 
 import java.io.IOException;
@@ -18,15 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Huawei
- */
 public class MainMenuController implements Initializable {
 
     
-    @FXML Button exitButton, newGameButton; 
+    @FXML Button exitButton, newGameButton, loadGameButton; 
     
     @FXML 
     private void newGame (ActionEvent event) throws IOException {
@@ -48,15 +40,23 @@ public class MainMenuController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
         stage.close(); 
         
-    }
-        @FXML 
-    private void tesdt(Event event) {
-        System.out.println("df");
+    } 
+    
+    @FXML
+    private void openSettings (ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Settings.fxml"));
+        Parent root = loader.load(); 
+        
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        loadGameButton.setDisable(true);
     }    
     
 }

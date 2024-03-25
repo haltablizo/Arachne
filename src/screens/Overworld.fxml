@@ -48,7 +48,7 @@
                               <Font size="25.0" />
                            </font>
                         </Text>
-                        <ProgressBar layoutX="10.0" layoutY="63.0" prefHeight="40.0" prefWidth="376.0" progress="0.67" />
+                        <ProgressBar layoutX="10.0" layoutY="63.0" prefHeight="40.0" prefWidth="376.0" progress="0.0" />
                      </children>
                   </Pane>
                </children>

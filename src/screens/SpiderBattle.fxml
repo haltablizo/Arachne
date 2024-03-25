@@ -31,7 +31,7 @@
                   <Insets left="25.0" right="25.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="ITEM" textAlignment="CENTER">
+            <Button fx:id="invButton" mnemonicParsing="false" onAction="#openInv" text="ITEM" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>

@@ -12,17 +12,13 @@ public class Arachne extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
         Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         
-       
         root.setFocusTraversable(false);
-        
         stage.show();        
-
     }
 
     public static void main(String[] args) {

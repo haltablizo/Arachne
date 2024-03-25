@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -27,7 +27,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="CANCEL" textAlignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#cancel" text="CANCEL" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Insets left="25.0" right="25.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="SAVE" textAlignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#save" text="SAVE" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -60,74 +60,34 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </BorderPane.margin>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Music :" textAlignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Music" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SFX :" GridPane.rowIndex="1">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SFX" GridPane.rowIndex="1">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@placeholder.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="100 %">
+                  <Slider fx:id="musicSlider" blockIncrement="1" max="100" min="0" />
+                  <Label fx:id="musicVol" text="${musicSlider.value}">
                      <font>
                         <Font size="25.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@placeholder.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@placeholder.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="100 %">
+                  <Slider fx:id="sfxSlider" blockIncrement="1" max="100" min="0" />
+                  <Label fx:id="sfxVol" text="${sfxSlider.value}">
                      <font>
                         <Font size="25.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@placeholder.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  </Label>
                </children>
             </HBox>
          </children>
