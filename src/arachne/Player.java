@@ -13,7 +13,7 @@ public class Player {
     private static boolean curDef = false; //checks if player is "defending" for this round 
     public Inventory pStorage; 
     
-    //private Quest curQuest; 
+    private Quest curQuest; 
     
     public Player(String n) {
         name = n; 
@@ -71,7 +71,7 @@ public class Player {
             if (s.getHp() > 0); //still alive
             else {
                 //dead 
-                //this.pStorage.pickUpSilk(s.getAmtOfSilk()); 
+                pStorage.pickUpSilk(s.getAmtOfSilk()); 
             }
             
             
@@ -102,7 +102,7 @@ public class Player {
     
     public void pursueQuest() {
         curQuest.complete(); 
-        this.popMeter += curQuest.getReward(); 
+        popMeter += curQuest.getPopInc(); 
     }
     
 

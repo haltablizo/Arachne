@@ -12,9 +12,9 @@ public class Human extends NPC {
         this.amtOfCoins = a; 
     }
 
-//    public void give(Player p, Quest q) {
-//        p.setQuest(q);
-//    }
+    public void give(Player p, Quest q) {
+        p.setQuest(q);
+    }
     
     public void reward(Player p) {
         p.pStorage.store(this.reward, 1); 
