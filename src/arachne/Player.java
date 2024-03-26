@@ -2,65 +2,65 @@
 package arachne;
 
 public class Player {
-    private String name; 
-    private float popMeter = 0; 
-    private int atk; //attack with fists
-    private int def; //default def  
-    private int hp; 
-    private int maxHp = 20; 
-    private Coat coat; 
-    private Needle needle; 
-    private boolean curDef = false; //checks if player is "defending" for this round 
-    //public Storage pStorage; 
+    private static String name; 
+    private static float popMeter = 0; 
+    private static int atk = 1; //attack with fists
+    private static int def = 1; //default def  
+    private static int hp; 
+    private static int maxHp = 20; 
+    private static Coat coat; 
+    private static Needle needle; 
+    private static boolean curDef = false; //checks if player is "defending" for this round 
+    public Inventory pStorage; 
     
     //private Quest curQuest; 
     
-    public Player(String name) {
-        this.name = name; 
-        this.hp = maxHp; 
-    }   
+    public Player(String n) {
+        name = n; 
+        hp = maxHp; 
+    }
     
     public void setCoat(Coat c) {
-        this.coat = c; 
-        this.def = c.getDefBonus();
+        coat = c; 
+        def = c.getDefBonus();
     }
     public void setNeedle(Needle n){
-        this.needle = n; 
-        this.atk = n.getAtkBonus(); 
+        needle = n; 
+        atk = n.getAtkBonus(); 
     }
     
     public String getName() {
-        return this.name; 
+        return name; 
     }
     public float getPopMeter() {
-        return this.popMeter; 
+        return popMeter; 
     }
     public int getAtk() {
-        return this.atk; 
+        return atk; 
     }
     public int getDef() {
-        return this.def; 
+        return def; 
     }    
     public int getHp() {
-        return this.hp; 
+        return hp; 
     }    
     public int getMaxHp() {
-        return this.maxHp; 
+        return maxHp; 
     }
     public Coat getCoat() {
-        return this.coat; 
+        return coat; 
     }
     
     public Needle getNeedle() {
-        return this.needle; 
+        return needle; 
     }
     
     public boolean getCurDef() {
-        return this.curDef; 
+        return curDef; 
     }
     
     public void reduceHP(int i){
-        this.hp-=i;
+        hp-=i;
     }
 
     public void attack(Spider s) {
@@ -81,41 +81,29 @@ public class Player {
         }
     }
     public void defend() { 
-        this.curDef = true; 
+        curDef = true; 
         System.out.println(this.getName() + " used defend! Damage will be reduced until next turn."); 
     }
     public void removeDef() {
-        this.curDef = false; 
+        curDef = false; 
     }
     
-//    public void use(Powerup p, int amt) {
-//        //this.pStorage.use(p, amt); 
-//        System.out.println(this.getName() + " used " + amt + " " + p.getName()); 
-//        this.hp += p.getHpInc();         
-//        this.def += p.getDefInc(); 
-//        this.atk += p.getAtkInc(); 
-//        this.maxHp += p.getMaxHpInc(); 
-//        this.popMeter += p.getPopInc(); 
-//        if (p.getHpInc()>0) System.out.println("hp was increased by " + p.getHpInc());         
-//        if (p.getDefInc()>0) System.out.println("def was increased by " + p.getDefInc()); 
-//        if (p.getAtkInc()>0) System.out.println("atk was increased by " + p.getAtkInc()); 
-//        if (p.getMaxHpInc()>0) System.out.println("max hp was increased by " + p.getMaxHpInc()); 
-//        if (p.getPopInc()>0) System.out.println("popularity was increased by " + p.getPopInc()); 
-//
-//    }
+    public void use(Powerup p, int amt) {
+        pStorage.use(p, amt); 
+        hp += p.getHpInc();         
+        def += p.getDefInc(); 
+        atk += p.getAtkInc(); 
+        maxHp += p.getMaxHpInc(); 
+    }
         
-//    public void interact(Human h) {
-//        System.out.println(h.getDialogue()); 
-//    }
-//    
-//    public void setQuest(Quest q) {
-//        curQuest = q; 
-//    }
+    public void setQuest(Quest q) {
+        curQuest = q; 
+    }
     
-//    public void pursueQuest() {
-//        curQuest.complete(); 
-//        this.popMeter += curQuest.getReward(); 
-//    }
+    public void pursueQuest() {
+        curQuest.complete(); 
+        this.popMeter += curQuest.getReward(); 
+    }
     
 
 }

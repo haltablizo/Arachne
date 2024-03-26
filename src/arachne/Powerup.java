@@ -7,16 +7,14 @@ public class Powerup implements Storeable {
     private int defInc; 
     private int atkInc; 
     private int maxHpInc;    
-    private int popInc; 
 
     
-    public Powerup(String n, int h, int d, int a, int m, int p) {
+    public Powerup(String n, int h, int d, int a, int m) {
         this.name = n; 
         this.hpInc = h;        
         this.defInc = d; 
         this.atkInc = a; 
         this.maxHpInc = m; 
-        this.popInc = p; 
     }
     
     public String getName() { 
@@ -33,9 +31,6 @@ public class Powerup implements Storeable {
     }    
     public int getMaxHpInc() {
         return this.maxHpInc; 
-    }    
-    public int getPopInc() {
-        return this.popInc; 
     }
     
     @Override
