@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Settings;
 import arachne.Spider;
 import java.io.File;
 import java.io.IOException;
@@ -85,6 +86,7 @@ public class OverworldController implements Initializable {
                 index = 3; 
                 break;
             case ESCAPE: 
+                bgMusic.stop(); 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/MainMenu.fxml"));
                 Parent root = loader.load();
 
@@ -111,6 +113,7 @@ public class OverworldController implements Initializable {
             thisStage.hide();
             thisStage.setScene(subjectScene);
             thisStage.show();
+            bgMusic.stop(); 
 
         }
         
@@ -121,7 +124,8 @@ public class OverworldController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //bgMusic.play();
+        bgMusic.setVolume(0.01*Settings.getMusic());
+        bgMusic.play();
         grid.add(im, coordX, coordY);
         grid.add(spider, calCoordX, calCoordY);
         
