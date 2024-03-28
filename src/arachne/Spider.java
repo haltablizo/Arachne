@@ -67,14 +67,14 @@ public class Spider {
         this.hp-=i;
     }
    
-    public void attack(Player p) {
-        if (this.getAtk() > p.getDef()) {
-            if (p.getCurDef()) {
-                p.reduceHP(this.getAtk()-p.getDef());
-                p.removeDef();
+    public void attack() {
+        if (this.getAtk() > Player.getDef() ) {
+            if (Player.getCurDef()) {
+                Player.reduceHP(this.getAtk()-Player.getDef());
+                Player.removeDef(); 
             } 
             else {
-                p.reduceHP(this.getAtk());
+                Player.reduceHP(this.getAtk());
             }
         }
 

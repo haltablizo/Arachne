@@ -104,7 +104,7 @@ public class OverworldController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
             Parent root = loader.load();
             SpiderBattleController controller = loader.getController();
-            Spider calamari = new Spider("Calamari", 1, 10, 30, 5);
+            Spider calamari = new Spider("Calamari", 2, 0, 10, 5);
             calamari.setIcons("/images/calamari/neutralIcon.png", "/images/calamari/attackedIcon.png", "/images/calamari/attackingIcon.png");
             controller.setSpider(calamari);
 

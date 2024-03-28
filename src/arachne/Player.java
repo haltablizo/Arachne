@@ -6,89 +6,99 @@ public class Player {
     private static float popMeter = 0; 
     private static int atk = 1; //attack with fists
     private static int def = 1; //default def  
-    private static int hp; 
+    private static int hp = 20; 
     private static int maxHp = 20; 
     private static Coat coat; 
     private static Needle needle; 
     private static boolean curDef = false; //checks if player is "defending" for this round 
-    public Inventory pStorage; 
+    public static Inventory pStorage; 
     
-    private Quest curQuest; 
+    private static Quest curQuest; 
     
     public Player(String n) {
         name = n; 
         hp = maxHp; 
     }
     
-    public void setCoat(Coat c) {
+    public static void setCoat(Coat c) {
         coat = c; 
         def = c.getDefBonus();
     }
-    public void setNeedle(Needle n){
+    public static void setNeedle(Needle n){
         needle = n; 
         atk = n.getAtkBonus(); 
     }
     
-    public String getName() {
+    public static String getName() {
         return name; 
     }
-    public float getPopMeter() {
+    public static float getPopMeter() {
         return popMeter; 
     }
-    public int getAtk() {
+    public static int getAtk() {
         return atk; 
     }
-    public int getDef() {
+    public static int getDef() {
         return def; 
     }    
-    public int getHp() {
+    public static int getHp() {
         return hp; 
     }    
-    public int getMaxHp() {
+    public static int getMaxHp() {
         return maxHp; 
     }
-    public Coat getCoat() {
+    public static Coat getCoat() {
         return coat; 
     }
     
-    public Needle getNeedle() {
+    public static Needle getNeedle() {
         return needle; 
     }
     
-    public boolean getCurDef() {
+    public static boolean getCurDef() {
         return curDef; 
     }
     
-    public void reduceHP(int i){
+    public static void reduceHP(int i){
         hp-=i;
     }
 
-    public void attack(Spider s) {
-        if (this.getAtk() > s.getDef()) {
-
-            s.reduceHP(this.getAtk()-s.getDef()); 
+    public static boolean attack(Spider s) {
+        System.out.println("-----------------");
+        if (atk > s.getDef()) {
+            System.out.println("attacked"); 
+            s.reduceHP(atk-s.getDef()); 
                  
-            if (s.getHp() > 0); //still alive
+            if (s.getHp() > 0) {
+                System.out.println("spid not dead"); 
+                s.attack(); 
+                System.out.println("Spider: " + s.getHp()); 
+                System.out.println("Player: " + hp); 
+                return false; 
+            } 
             else {
-                //dead 
-                pStorage.pickUpSilk(s.getAmtOfSilk()); 
-            }
-            
-            
+                System.out.println("spid dead"); 
+                System.out.println("Spider: " + s.getHp()); 
+                System.out.println("Player: " + hp); 
+                //pStorage.pickUpSilk(s.getAmtOfSilk());  
+                return true; 
+            }       
         }
         else {
-            System.out.println(this.getName() + " did not do any damage!"); 
+            System.out.println(name + " did not do any damage!"); 
+            return false; 
         }
     }
-    public void defend() { 
+    
+    public static void defend(Spider s) { 
         curDef = true; 
-        System.out.println(this.getName() + " used defend! Damage will be reduced until next turn."); 
+        s.attack();
     }
-    public void removeDef() {
+    public static void removeDef() {
         curDef = false; 
     }
     
-    public void use(Powerup p, int amt) {
+    public static void use(Powerup p, int amt) {
         pStorage.use(p, amt); 
         hp += p.getHpInc();         
         def += p.getDefInc(); 
@@ -96,11 +106,11 @@ public class Player {
         maxHp += p.getMaxHpInc(); 
     }
         
-    public void setQuest(Quest q) {
+    public static void setQuest(Quest q) {
         curQuest = q; 
     }
     
-    public void pursueQuest() {
+    public static void pursueQuest() {
         curQuest.complete(); 
         popMeter += curQuest.getPopInc(); 
     }

@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Player;
 import arachne.Spider;
 import java.io.IOException;
 import java.net.URL;
@@ -35,8 +36,20 @@ public class SpiderBattleController implements Initializable {
         
     }
     
-    @FXML void attack(ActionEvent event) throws InterruptedException {
-        
+    @FXML void attack(ActionEvent event) throws InterruptedException, IOException {
+        if (Player.attack(spid)) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/WinScreen.fxml")); 
+            Parent root = loader.load(); 
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        }
         opponentIcon.setImage(new Image(spid.getAttackedIcon(), 450, 450, false, false));
     }
     
