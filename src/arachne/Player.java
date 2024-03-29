@@ -128,8 +128,20 @@ public class Player {
 
     
     public static void hit(Divine d) {
+        int charCardIndex = (int)(Math.random() * (d.deck.size()));
+        hand.add(d.deck.get(charCardIndex));
+        d.deck.remove(charCardIndex);
+        
+        int oppCardIndex = (int)(Math.random() * (d.deck.size()));
+        d.hit(d.deck.get(oppCardIndex)); 
+        d.deck.remove(oppCardIndex);
+        
+        //if player deck size == 5, or sum exceeds 21 
         
     }
     
+    public static void endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
+        
+    }
     
 }

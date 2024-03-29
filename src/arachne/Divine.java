@@ -20,6 +20,10 @@ public class Divine extends NPC {
         }
     }
     
+    public void hit(int card) {
+        hand.add(card);
+    }
+    
     public Divine(String name, Equipment e) {
         super(name); 
         this.reward = e; 

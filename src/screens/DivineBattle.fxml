@@ -40,7 +40,7 @@
          <left>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="HIT">
+                  <Button fx:id="hitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="HIT">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -48,7 +48,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="STAND">
+                  <Button fx:id="standButton" mnemonicParsing="false" text="STAND">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -62,7 +62,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="EXIT">
+                  <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="EXIT">
                      <font>
                         <Font size="20.0" />
                      </font></Button>
