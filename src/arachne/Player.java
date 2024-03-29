@@ -1,6 +1,9 @@
 
 package arachne;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private static String name; 
     private static float popMeter = 0; 
@@ -14,6 +17,8 @@ public class Player {
     public static Inventory pStorage; 
     
     private static Quest curQuest; 
+    
+    private static List<Integer> hand = new ArrayList(); 
     
     public Player(String n) {
         name = n; 
@@ -115,5 +120,16 @@ public class Player {
         popMeter += curQuest.getPopInc(); 
     }
     
+    public static int getHandSum() {
+        int s = 0; 
+        for (int i : hand) s = s + i;
+        return s; 
+    }
 
+    
+    public static void hit(Divine d) {
+        
+    }
+    
+    
 }

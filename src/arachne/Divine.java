@@ -1,9 +1,24 @@
 
 package arachne;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Divine extends NPC {
     private Equipment reward; 
     private Needle owned; 
+
+    private List<Integer> hand = new ArrayList(); 
+    
+    public List<Integer> deck = new ArrayList(); 
+    
+    public void createDeck() {
+        for (int i=0; i<4; i++) {
+            for (int j=1; j<=10; j++) {
+                deck.add(j); 
+            }
+        }
+    }
     
     public Divine(String name, Equipment e) {
         super(name); 
@@ -13,5 +28,16 @@ public class Divine extends NPC {
     public Equipment getReward() {
         return this.reward; 
     }
+    
+    public int getHandSum() {
+        int s = 0; 
+        for (int i : this.hand) s = s + i;
+        return s; 
+    }
+    
+    public void getCard(int card) {
+        hand.add(card);
+    }
+    
     
 }

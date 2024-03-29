@@ -14,7 +14,7 @@
    <top>
       <BorderPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <left>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tyche" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -24,7 +24,7 @@
             </Text>
          </left>
          <right>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your turn" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -122,7 +122,7 @@
                   <Insets bottom="150.0" left="50.0" top="150.0" />
                </BorderPane.margin>
                <top>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tyche's Deck" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent's Deck" textAlignment="CENTER" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </BorderPane.margin>
