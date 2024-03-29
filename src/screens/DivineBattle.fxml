@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DivineBattleController">
    <top>
       <BorderPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <left>
@@ -40,7 +40,7 @@
          <left>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="hitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="HIT">
+                  <Button fx:id="hitButton" mnemonicParsing="false" onAction="#hit" prefHeight="40.0" prefWidth="90.0" text="HIT">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -48,7 +48,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="standButton" mnemonicParsing="false" text="STAND">
+                  <Button fx:id="standButton" mnemonicParsing="false" onAction="#stand" text="STAND">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

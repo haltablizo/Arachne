@@ -8,7 +8,7 @@ public class Divine extends NPC {
     private Equipment reward; 
     private Needle owned; 
 
-    private List<Integer> hand = new ArrayList(); 
+    public List<Integer> hand = new ArrayList(); 
     
     public List<Integer> deck = new ArrayList(); 
     
@@ -22,6 +22,11 @@ public class Divine extends NPC {
     
     public void hit(int card) {
         hand.add(card);
+    }
+    
+    public void endGame() {
+        hand.clear(); 
+        deck.clear(); 
     }
     
     public Divine(String name, Equipment e) {

@@ -135,11 +135,16 @@ public class Player {
         int oppCardIndex = (int)(Math.random() * (d.deck.size()));
         d.hit(d.deck.get(oppCardIndex)); 
         d.deck.remove(oppCardIndex);
+
+        System.out.print(String.join(" ", "" + hand));
+        System.out.print(String.join(" ", "" + d.hand));
         
         //if player deck size == 5, or sum exceeds 21 
         if (hand.size() == 5 || Player.getHandSum() > 21) {
             endDivineGame(d); 
         }
+        
+
     }
     
     public static void endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
@@ -151,6 +156,8 @@ public class Player {
             else System.out.println("you are lower, lose") ; //opp has higher value, opp wins 
         }
                 
+        System.out.print(String.join(" ", "" + hand));
+        System.out.print(String.join(" ", "" + d.hand));
         hand.clear();    
                 
     }
