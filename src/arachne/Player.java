@@ -137,11 +137,22 @@ public class Player {
         d.deck.remove(oppCardIndex);
         
         //if player deck size == 5, or sum exceeds 21 
-        
+        if (hand.size() == 5 || Player.getHandSum() > 21) {
+            endDivineGame(d); 
+        }
     }
     
     public static void endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
-        
+        if (Player.getHandSum() > 21 && d.getHandSum() > 21) System.out.println("draw"); //both bust, draw
+        else if (d.getHandSum() > 21) System.out.println("opp bust, you win") ;//opp bust, char wins 
+        else if (Player.getHandSum() > 21) System.out.println("you bust, you lose"); //chara bust, opp less than 21, opp wins 
+        else { //both less than 21 
+            if (Player.getHandSum() > d.getHandSum()) System.out.println("you are higher, win") ; //char has higher value, char wins
+            else System.out.println("you are lower, lose") ; //opp has higher value, opp wins 
+        }
+                
+        hand.clear();    
+                
     }
     
 }
