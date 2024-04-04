@@ -142,27 +142,42 @@ public class Player {
         
         //if player deck size == 5, or sum exceeds 21 
         if (hand.size() == 5 || Player.getHandSum() > 21) {
-            endDivineGame(d); 
+            int a = endDivineGame(d); 
+            switch (a) {
+            case 0: 
+                System.out.println("you lose"); 
+                break;
+            case 1: 
+                System.out.println("you win"); 
+                break; 
+            case 2: 
+                System.out.println("draw"); 
+                break; 
+        }
         }
         
         int[] state = {tempCardVal, hand.size()}; 
         return state; 
     }
     
-    public static void endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
-        if (Player.getHandSum() > 21 && d.getHandSum() > 21) System.out.println("both bust, draw"); //both bust, draw
-        else if (d.getHandSum() > 21) System.out.println("opp bust, you win") ;//opp bust, char wins 
-        else if (Player.getHandSum() > 21) System.out.println("you bust, you lose"); //chara bust, opp less than 21, opp wins 
+    public static int endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
+        int status; //2 -> draw , 1 -> win, 0 -> lose
+        if (Player.getHandSum() > 21 && d.getHandSum() > 21) status =  2; //both bust, draw
+        else if (d.getHandSum() > 21) status = 1;//opp bust, char wins 
+        else if (Player.getHandSum() > 21) status = 0; //chara bust, opp less than 21, opp wins 
         else { //both less than 21 
-            if (Player.getHandSum() > d.getHandSum()) System.out.println("you are higher, win") ; //char has higher value, char wins
-            else System.out.println("you are lower, lose") ; //opp has higher value, opp wins 
+            if (Player.getHandSum() > d.getHandSum()) status = 1; //char has higher value, char wins
+            else if (Player.getHandSum() == d.getHandSum()) status = 2; 
+            else status = 0; //opp has higher value, opp wins 
         }
-                
+        
         System.out.print(String.join(" ", "" + hand));
         System.out.print(String.join(" ", "" + d.hand));
         hand.clear();    
         d.endGame(); 
-                
+         
+        return status; 
     }
+        
     
 }

@@ -54,7 +54,19 @@ public class DivineBattleController implements Initializable {
 
     @FXML
     private void stand(ActionEvent event) {
-        Player.endDivineGame(tyche); 
+        
+        int status = Player.endDivineGame(tyche); 
+        switch (status) {
+            case 0: 
+                System.out.println("you lose"); 
+                break;
+            case 1: 
+                System.out.println("you win"); 
+                break; 
+            case 2: 
+                System.out.println("draw"); 
+                break; 
+        }
     }
     
     @Override
