@@ -74,30 +74,19 @@
                <bottom>
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="firstCard" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
-                           <image>
-                              <Image url="@../images/placeholder.jpg" />
-                           </image>
                         </ImageView>
-                        <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="secondCard" fitHeight="125.0" fitWidth="100.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
-                           <image>
-                              <Image url="@../images/placeholder.jpg" />
-                           </image>
                         </ImageView>
-                        <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="110.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                           <image>
-                              <Image url="@../images/placeholder.jpg" />
-                           </image>
-                        </ImageView>
+                        <ImageView fx:id="thirdCard" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="fourthCard" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="fifthCard" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </children></HBox>
                </bottom>
                <top>

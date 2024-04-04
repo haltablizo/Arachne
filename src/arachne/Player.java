@@ -125,30 +125,32 @@ public class Player {
         for (int i : hand) s = s + i;
         return s; 
     }
-
-    
-    public static void hit(Divine d) {
+ 
+    public static int[] hit(Divine d) {
         int charCardIndex = (int)(Math.random() * (d.deck.size()));
-        hand.add(d.deck.get(charCardIndex));
+        int tempCardVal = d.deck.get(charCardIndex); 
+        hand.add(tempCardVal);
         d.deck.remove(charCardIndex);
         
         int oppCardIndex = (int)(Math.random() * (d.deck.size()));
         d.hit(d.deck.get(oppCardIndex)); 
         d.deck.remove(oppCardIndex);
 
-        System.out.print(String.join(" ", "" + hand));
-        System.out.print(String.join(" ", "" + d.hand));
+        System.out.println("a"); 
+        System.out.println(String.join(" ", "" + hand));
+        System.out.println(String.join(" ", "" + d.hand));
         
         //if player deck size == 5, or sum exceeds 21 
         if (hand.size() == 5 || Player.getHandSum() > 21) {
             endDivineGame(d); 
         }
         
-
+        int[] state = {tempCardVal, hand.size()}; 
+        return state; 
     }
     
     public static void endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
-        if (Player.getHandSum() > 21 && d.getHandSum() > 21) System.out.println("draw"); //both bust, draw
+        if (Player.getHandSum() > 21 && d.getHandSum() > 21) System.out.println("both bust, draw"); //both bust, draw
         else if (d.getHandSum() > 21) System.out.println("opp bust, you win") ;//opp bust, char wins 
         else if (Player.getHandSum() > 21) System.out.println("you bust, you lose"); //chara bust, opp less than 21, opp wins 
         else { //both less than 21 
@@ -159,6 +161,7 @@ public class Player {
         System.out.print(String.join(" ", "" + hand));
         System.out.print(String.join(" ", "" + d.hand));
         hand.clear();    
+        d.endGame(); 
                 
     }
     

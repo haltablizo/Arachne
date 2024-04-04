@@ -46,7 +46,6 @@ public class Divine extends NPC {
     
     public void getCard(int card) {
         hand.add(card);
-    }
-    
+    }    
     
 }
