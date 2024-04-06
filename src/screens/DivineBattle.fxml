@@ -13,7 +13,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DivineBattleController">
    <top>
       <BorderPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
-         <left>
+         <center>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
@@ -22,17 +22,7 @@
                   <Insets left="10.0" />
                </BorderPane.margin>
             </Text>
-         </left>
-         <right>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets right="10.0" />
-               </BorderPane.margin>
-            </Text>
-         </right>
+         </center>
       </BorderPane>
    </top>
    <bottom>
@@ -104,69 +94,64 @@
       </BorderPane>
    </bottom>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="275.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <left>
-            <BorderPane prefHeight="200.0" prefWidth="220.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="483.0" prefWidth="284.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="150.0" left="50.0" top="150.0" />
                </BorderPane.margin>
                <top>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent's Deck" textAlignment="CENTER" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </BorderPane.margin>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent's deck" BorderPane.alignment="BOTTOM_CENTER">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="20.0" />
                      </font>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
                   </Text>
                </top>
                <center>
-                  <HBox alignment="CENTER" prefHeight="165.0" prefWidth="250.0" style="-fx-border-color: gray; -fx-background-color: white;" BorderPane.alignment="CENTER">
+                  <HBox prefHeight="126.0" prefWidth="542.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="BOTTOM_CENTER">
                      <children>
-                        <ImageView fitHeight="100.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="2.5" right="2.5" />
-                           </HBox.margin>
+                        <ImageView fx:id="firstCard1" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/placeholder.jpg" />
+                              <Image url="@../images/divineCards/cardFour.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="100.0" fitWidth="75.0" layoutX="98.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="2.5" right="2.5" />
-                           </HBox.margin>
+                        <ImageView fx:id="firstCard11" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/placeholder.jpg" />
+                              <Image url="@../images/divineCards/cardFour.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="100.0" fitWidth="75.0" layoutX="135.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="2.5" right="2.5" />
-                           </HBox.margin>
+                        <ImageView fx:id="firstCard12" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/placeholder.jpg" />
+                              <Image url="@../images/divineCards/cardFour.png" />
                            </image>
                         </ImageView>
-                     </children></HBox>
+                        <ImageView fx:id="firstCard13" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/divineCards/cardFour.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="firstCard14" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/divineCards/cardFour.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets top="20.0" />
+                     </BorderPane.margin>
+                  </HBox>
                </center>
             </BorderPane>
          </left>
          <center>
-            <ImageView fitHeight="500.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="690.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../images/placeholder.jpg" />
                </image></ImageView>
          </center>
-         <right>
-            <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets right="50.0" />
-               </BorderPane.margin>
-               <image>
-                  <Image url="@../images/placeholder.jpg" />
-               </image>
-            </ImageView>
-         </right>
       </BorderPane>
    </center>
 </BorderPane>

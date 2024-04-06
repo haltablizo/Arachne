@@ -83,6 +83,11 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
+                        <Button fx:id="potionTab1" mnemonicParsing="false" text="Stats">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
                      </children>
                   </VBox>
                </children>

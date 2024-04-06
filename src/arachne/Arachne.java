@@ -13,7 +13,7 @@ public class Arachne extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/DivineBattle.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/Inventory.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

@@ -12,26 +12,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class InventoryController implements Initializable {
-   
-    
-    @FXML Button useButton, dropButton;
-    @FXML ImageView itemImage; 
-    @FXML Label itemDesc, itemName; 
-    private String openedFrom; 
+public class StatsScreenController implements Initializable {
+
+        private String openedFrom; 
     
     public void setOpenedFrom(String s) {
         openedFrom = s;
     }
     
-    @FXML 
+    
+        @FXML 
     private void closeInv(ActionEvent event) throws IOException {
-        FXMLLoader loader; 
+        FXMLLoader loader;
         
         if (openedFrom.equals("Overworld")) {
             loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
@@ -59,27 +53,9 @@ public class InventoryController implements Initializable {
             root.requestFocus();
         }
     }
-    
-    @FXML
-    public void openStats(ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Stats.fxml"));
-            Parent root = loader.load();
-            Scene subjectScene = new Scene(root);
-            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            thisStage.hide();
-            thisStage.setScene(subjectScene);
-            thisStage.show();
-            root.requestFocus();
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        itemImage.setImage(null);
-        itemName.setText("");        
-        itemDesc.setText("");
-
-        useButton.setVisible(false);
-        dropButton.setVisible(false);
+        
     }    
     
 }
