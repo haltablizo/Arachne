@@ -6,7 +6,7 @@ public class Powerup implements Storeable {
     private int hpInc;     
     private int defInc; 
     private int atkInc; 
-    private int maxHpInc;    
+    private int maxHpInc;
 
     
     public Powerup(String n, int h, int d, int a, int m) {

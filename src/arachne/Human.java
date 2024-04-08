@@ -16,8 +16,7 @@ public class Human extends NPC {
         p.setQuest(q);
     }
     
-    public void reward(Player p) {
-        p.pStorage.store(this.reward, 1); 
-        p.pStorage.coinInc(amtOfCoins);
+    public void reward() {
+        Inventory.store(this.reward, 1); 
     }
 }

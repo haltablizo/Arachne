@@ -111,32 +111,32 @@
                   </Text>
                </top>
                <center>
-                  <HBox prefHeight="126.0" prefWidth="542.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="BOTTOM_CENTER">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="474.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="BOTTOM_CENTER">
                      <children>
-                        <ImageView fx:id="firstCard1" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/divineCards/cardFour.png" />
-                           </image>
+                        <ImageView fx:id="firstOppCard" fitHeight="109.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="9.0" top="30.0" />
+                           </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="firstCard11" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/divineCards/cardFour.png" />
-                           </image>
+                        <ImageView fx:id="secondOppCard" fitHeight="109.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="9.0" top="30.0" />
+                           </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="firstCard12" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/divineCards/cardFour.png" />
-                           </image>
+                        <ImageView fx:id="thirdOppCard" fitHeight="109.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="9.0" top="30.0" />
+                           </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="firstCard13" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/divineCards/cardFour.png" />
-                           </image>
+                        <ImageView fx:id="fourthOppCard" fitHeight="109.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="9.0" top="30.0" />
+                           </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="firstCard14" fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/divineCards/cardFour.png" />
-                           </image>
+                        <ImageView fx:id="fifthOppCard" fitHeight="109.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="9.0" top="30.0" />
+                           </HBox.margin>
                         </ImageView>
                      </children>
                      <BorderPane.margin>
@@ -150,7 +150,10 @@
             <ImageView fitHeight="690.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../images/placeholder.jpg" />
-               </image></ImageView>
+               </image>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin></ImageView>
          </center>
       </BorderPane>
    </center>
