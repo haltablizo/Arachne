@@ -2,11 +2,16 @@
 package arachne;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class Inventory {
-    private static int maxNum = 16;  //max number of storeable items, array list 
-    public static Map<Powerup, Integer> invPowerup = new Hashtable<>(); 
+    //public static Map<Powerup, Integer> invPowerup = new Hashtable<>(); 
     public static Map<Equipment, Integer> invEquipment = new Hashtable<>(); 
+    
+    
+    public static LinkedHashMap<Powerup, Integer> invPowerup = new LinkedHashMap<>(9, (float) 0.75, true);
+    
+    
 
     private static int silk;
     

@@ -12,13 +12,13 @@ public class Arachne extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Powerup a = new Powerup("a", 0,0,0,0);        
-        Powerup b = new Powerup("b", 0,0,0,0); 
-        Powerup c = new Powerup("c", 0,0,0,0); 
-        Powerup d = new Powerup("d", 0,0,0,0); 
-        Powerup e = new Powerup("e", 0,0,0,0);         
-        Powerup f = new Powerup("e", 0,0,0,0); 
-        Powerup g = new Powerup("e", 0,0,0,0); 
+        Powerup a = new Powerup("a", 0,0,0,0, "h");        
+        Powerup b = new Powerup("b", 0,0,0,0, "q"); 
+        Powerup c = new Powerup("c", 0,0,0,0, "a"); 
+        Powerup d = new Powerup("d", 0,0,0,0, "d"); 
+        Powerup e = new Powerup("e", 0,0,0,0, "d");         
+        Powerup f = new Powerup("f", 0,0,0,0, "sad"); 
+        Powerup g = new Powerup("g", 0,0,0,0, "a"); 
 
  
         Inventory.store(a,1);        
