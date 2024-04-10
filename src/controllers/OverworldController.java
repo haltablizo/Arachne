@@ -40,6 +40,11 @@ public class OverworldController implements Initializable {
     ImageView spider = new ImageView(spidImg);
     private int calCoordX = 2; 
     private int calCoordY = 1; 
+    
+    Image divImg = new Image("images/placeholder.jpg", 250, 250, false, false); 
+    ImageView divine = new ImageView(divImg); 
+    private int divCoordX = 3; 
+    private int divCoordY = 0; 
 
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
     private int coordX = 0;     
@@ -117,6 +122,19 @@ public class OverworldController implements Initializable {
 
         }
         
+        
+        if (coordX==divCoordX && coordY==divCoordY) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/DivineBattle.fxml"));
+            Parent root = loader.load();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+            bgMusic.stop(); 
+        }
+        
         img = new Image(fn[index], 250, 250, false, false); 
         im = new ImageView(img);
         grid.add(im, coordX, coordY);
@@ -128,6 +146,8 @@ public class OverworldController implements Initializable {
         bgMusic.play();
         grid.add(im, coordX, coordY);
         grid.add(spider, calCoordX, calCoordY);
+        
+        grid.add(divine, divCoordX, divCoordY); 
         
     }   
     

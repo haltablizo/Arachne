@@ -21,15 +21,15 @@ public class Arachne extends Application {
         Powerup g = new Powerup("g", 0,0,0,0, "a"); 
 
  
-        Inventory.store(a,1);        
+        Inventory.store(a,10);        
         Inventory.store(b,1);
         Inventory.store(c,1);
-        Inventory.store(d,1);
+        Inventory.store(d,7);
         Inventory.store(e,1);
-        Inventory.store(f,1);
+        Inventory.store(f,4);
         Inventory.store(g,1);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/Inventory.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         
