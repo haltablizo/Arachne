@@ -92,7 +92,7 @@ public class InventoryController implements Initializable {
         Powerup key = entry.getKey();
         Integer value = entry.getValue();
                     
-        Image img = new Image("/images/spiderIcon.png", 150, 150, false, false);
+        Image img = new Image(key.getFn(), 150, 150, false, false);
         itemImage.setImage(img);
         itemName.setText("[" + value + "] " + key.getName());        
         itemDesc.setText(key.getDesc());

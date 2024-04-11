@@ -12,22 +12,18 @@ public class Arachne extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Powerup a = new Powerup("a", 0,0,0,0, "h");        
-        Powerup b = new Powerup("b", 0,0,0,0, "q"); 
-        Powerup c = new Powerup("c", 0,0,0,0, "a"); 
-        Powerup d = new Powerup("d", 0,0,0,0, "d"); 
-        Powerup e = new Powerup("e", 0,0,0,0, "d");         
-        Powerup f = new Powerup("f", 0,0,0,0, "sad"); 
-        Powerup g = new Powerup("g", 0,0,0,0, "a"); 
+        Powerup ambrosia = new Powerup("Ambrosia", 0,0,0,0, "h", "/images/powerupIcons/ambrosia.png");        
+        Powerup goldenApple = new Powerup("Golden Apple", 0,0,0,0, "q", "/images/powerupIcons/goldenApple.png"); 
+        Powerup lotus = new Powerup("Lotus", 0,0,0,0, "a", "/images/powerupIcons/lotus.png"); 
+        Powerup wheat = new Powerup("Wheat", 0,0,0,0, "d", "/images/powerupIcons/wheat.png"); 
+        Powerup wine = new Powerup("Wine", 0,0,0,0, "d", "/images/powerupIcons/wine.png");   
 
  
-        Inventory.store(a,10);        
-        Inventory.store(b,1);
-        Inventory.store(c,1);
-        Inventory.store(d,7);
-        Inventory.store(e,1);
-        Inventory.store(f,4);
-        Inventory.store(g,1);
+        Inventory.store(ambrosia,5);        
+        Inventory.store(goldenApple,1);
+        Inventory.store(lotus,3);
+        Inventory.store(wheat,7);
+        Inventory.store(wine,1);
         
         Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
         Scene scene = new Scene(root);

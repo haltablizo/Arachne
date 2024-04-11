@@ -9,16 +9,18 @@ public class Powerup implements Storeable {
     private int maxHpInc;
     
     private String desc; 
+    private String filename; 
     
 
     
-    public Powerup(String n, int h, int d, int a, int m, String desc) {
+    public Powerup(String n, int h, int d, int a, int m, String desc, String fn) {
         this.name = n; 
         this.hpInc = h;        
         this.defInc = d; 
         this.atkInc = a; 
         this.maxHpInc = m; 
         this.desc = desc; 
+        this.filename = fn; 
     }
     
     public String getName() { 
@@ -38,6 +40,9 @@ public class Powerup implements Storeable {
     }
     public String getDesc() {
         return this.desc; 
+    }
+    public String getFn() {
+        return this.filename; 
     }
     
     @Override

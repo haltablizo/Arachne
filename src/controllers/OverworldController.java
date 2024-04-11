@@ -41,7 +41,7 @@ public class OverworldController implements Initializable {
     private int calCoordX = 2; 
     private int calCoordY = 1; 
     
-    Image divImg = new Image("images/placeholder.jpg", 250, 250, false, false); 
+    Image divImg = new Image("images/divinePlaceholder.png", 250, 250, false, false); 
     ImageView divine = new ImageView(divImg); 
     private int divCoordX = 3; 
     private int divCoordY = 0; 
