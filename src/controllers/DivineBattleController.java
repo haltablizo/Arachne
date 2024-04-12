@@ -4,15 +4,22 @@ package controllers;
 import arachne.Divine;
 import arachne.Equipment;
 import arachne.Player;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 
 public class DivineBattleController implements Initializable {
@@ -27,6 +34,8 @@ public class DivineBattleController implements Initializable {
     "cardSix.png", "cardSeven.png", "cardEight.png", "cardNine.png", "cardTen.png"}; 
     
     @FXML ImageView firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard;
+    
+    @FXML Button hitButton, standButton; 
     
     @FXML
     private void hit(ActionEvent event) {
@@ -76,6 +85,22 @@ public class DivineBattleController implements Initializable {
         }
         
         //show cards 
+        
+        //disable buttons
+        hitButton.setDisable(true); 
+        standButton.setDisable(true); 
+    }
+    
+    @FXML
+    private void exit(ActionEvent event) throws IOException  {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+        Parent root = loader.load();
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+        root.requestFocus();
     }
     
     @Override

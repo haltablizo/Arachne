@@ -52,7 +52,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="EXIT">
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="90.0" text="EXIT">
                      <font>
                         <Font size="20.0" />
                      </font></Button>
