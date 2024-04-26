@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ public class MainMenuController implements Initializable {
     
     @FXML Button exitButton, newGameButton, loadGameButton; 
     
+       
     @FXML 
     private void newGame (ActionEvent event) throws IOException {
         Alert usernameAlert = new Alert(AlertType.CONFIRMATION);
@@ -35,7 +37,10 @@ public class MainMenuController implements Initializable {
         usernameAlert.getDialogPane().setContent(usernameLabel);
         usernameAlert.getDialogPane().setContent(usernameField);
         
+        
         usernameAlert.showAndWait();
+        Player.setName(usernameField.getText()); 
+
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
         Parent root = loader.load(); 

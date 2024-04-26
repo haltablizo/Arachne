@@ -20,9 +20,9 @@ public class Player {
     
     public static List<Integer> hand = new ArrayList(); 
     
-    public Player(String n) {
+
+    public static void setName(String n) {
         name = n; 
-        hp = maxHp; 
     }
     
     public static void setCoat(Coat c) {
