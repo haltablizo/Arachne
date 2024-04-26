@@ -25,7 +25,7 @@ public class Arachne extends Application {
         Inventory.store(wheat,7);
         Inventory.store(wine,1);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/DivineBattle.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

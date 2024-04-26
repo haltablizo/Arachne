@@ -24,10 +24,6 @@ public class Divine extends NPC {
         hand.add(card);
     }
     
-    public void endGame() {
-        hand.clear(); 
-        deck.clear(); 
-    }
     
     public Divine(String name, Equipment e) {
         super(name); 

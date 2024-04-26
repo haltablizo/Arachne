@@ -34,14 +34,17 @@ public class DivineBattleController implements Initializable {
     "cardSix.png", "cardSeven.png", "cardEight.png", "cardNine.png", "cardTen.png"}; 
     
     @FXML ImageView firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard;
+    ImageView[] oppCards = {firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard};
     
     @FXML Button hitButton, standButton; 
     
     @FXML
     private void hit(ActionEvent event) {
+        standButton.setDisable(false);
         int[] returnVal = Player.hit(tyche);
         int cardValue = returnVal[0]; 
         int turn = returnVal[1];
+        int bust = returnVal[2]; 
         
         switch (turn-1) {
             case 0: 
@@ -65,7 +68,10 @@ public class DivineBattleController implements Initializable {
                 fifthOppCard.setImage(new Image("/images/placeholder.jpg", 100, 125, false, false));
                 break; 
             
-        }
+            }
+        
+        if (bust!=3) end(); 
+        
     }
 
     @FXML
@@ -84,7 +90,20 @@ public class DivineBattleController implements Initializable {
                 break; 
         }
         
-        //show cards 
+        end(); 
+    }
+    
+    private void end() {
+                //show cards 
+        if (Player.hand.size()>=1) firstOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(0)-1], 100, 125, false, false));
+        if (Player.hand.size()>=2) secondOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(1)-1], 100, 125, false, false));
+        if (Player.hand.size()>=3) thirdOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(2)-1], 100, 125, false, false));
+        if (Player.hand.size()>=4) fourthOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(3)-1], 100, 125, false, false));
+        if (Player.hand.size()>=5) fifthOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(4)-1], 100, 125, false, false));
+        
+        Player.hand.clear();
+        tyche.hand.clear(); 
+        tyche.deck.clear(); 
         
         //disable buttons
         hitButton.setDisable(true); 
@@ -106,6 +125,7 @@ public class DivineBattleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tyche.createDeck(); 
+        standButton.setDisable(true);
     }    
     
 }

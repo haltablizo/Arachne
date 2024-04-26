@@ -18,7 +18,7 @@ public class Player {
     
     private static Quest curQuest; 
     
-    private static List<Integer> hand = new ArrayList(); 
+    public static List<Integer> hand = new ArrayList(); 
     
     public Player(String n) {
         name = n; 
@@ -129,6 +129,8 @@ public class Player {
     public static int[] hit(Divine d) {
         int charCardIndex = (int)(Math.random() * (d.deck.size()));
         int tempCardVal = d.deck.get(charCardIndex); 
+        int bust = 3; //default 
+        
         hand.add(tempCardVal);
         d.deck.remove(charCardIndex);
         
@@ -145,18 +147,18 @@ public class Player {
             int a = endDivineGame(d); 
             switch (a) {
             case 0: 
-                System.out.println("you lose"); 
+                bust = 0; 
                 break;
             case 1: 
-                System.out.println("you win"); 
+                bust = 1; 
                 break; 
             case 2: 
-                System.out.println("draw"); 
+                bust = 2; 
                 break; 
-        }
+            }
         }
         
-        int[] state = {tempCardVal, hand.size()}; 
+        int[] state = {tempCardVal, hand.size(), bust}; 
         return state; 
     }
     
@@ -173,9 +175,7 @@ public class Player {
         
         System.out.print(String.join(" ", "" + hand));
         System.out.print(String.join(" ", "" + d.hand));
-        hand.clear();    
-        d.endGame(); 
-         
+                 
         return status; 
     }
         
