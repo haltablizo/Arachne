@@ -2,23 +2,22 @@
 package arachne;
 
 public class Settings {
-    private static int music = 100;
-    private static int sfx = 100;
-    private static int currentMusic = music;
-    private static int currentSFX = sfx;
 
-    public static void save(int m, int s) {
-        music = m; 
-        sfx = s; 
-    }
+    private String upVal = "W";
+    private String leftVal = "A";    
+    private String downVal = "S";
+    private String rightVal = "D";
 
-    public static int getMusic() {
-        return music;
+    public void setUpVal(String u) {
+        upVal = u;
     }
-
-    public static int getSfx() {
-        return sfx;
+    public void setLeftVal(String l) {
+        leftVal = l;    
     }
-  
-    
+    public void setDownVal(String d) {
+        downVal = d;     
+    }
+    public void setRightVal(String r) {
+        rightVal = r;
+    }
 }
