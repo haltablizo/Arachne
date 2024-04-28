@@ -16,6 +16,10 @@ public class Player {
     private static boolean curDef = false; //checks if player is "defending" for this round 
     public static Inventory pStorage; 
     
+    
+    private static int curLevel = 1; 
+    private static int maxLevel = 8; 
+    
     private static Quest curQuest; 
     
     public static List<Integer> hand = new ArrayList(); 
@@ -23,6 +27,18 @@ public class Player {
 
     public static void setName(String n) {
         name = n; 
+    }
+    
+    public static void incCurLevel(int c) {
+        curLevel++;
+    }
+    
+    public static void decCurlevel(int c) {
+        maxLevel++;
+    }
+    
+    public static void incMaxLevel(int c) {
+        maxLevel++; 
     }
     
     public static void setCoat(Coat c) {
@@ -70,9 +86,8 @@ public class Player {
 
     public static boolean attack(Spider s) {
         System.out.println("-----------------");
-        if (atk > s.getDef()) {
             System.out.println("attacked"); 
-            s.reduceHP(atk-s.getDef()); 
+            s.reduceHP(atk); 
                  
             if (s.getHp() > 0) {
                 System.out.println("spid not dead"); 
@@ -88,11 +103,8 @@ public class Player {
                 //pStorage.pickUpSilk(s.getAmtOfSilk());  
                 return true; 
             }       
-        }
-        else {
-            System.out.println(name + " did not do any damage!"); 
-            return false; 
-        }
+        
+
     }
     
     public static void defend(Spider s) { 

@@ -28,16 +28,6 @@ public class OverworldController implements Initializable {
 
     @FXML GridPane grid;
     
-    Image spidImg = new Image("images/spiderIcon.png", 250, 250, false, false); 
-    ImageView spider = new ImageView(spidImg);
-    private int calCoordX = 2; 
-    private int calCoordY = 1; 
-    
-    Image divImg = new Image("images/divinePlaceholder.png", 250, 250, false, false); 
-    ImageView divine = new ImageView(divImg); 
-    private int divCoordX = 3; 
-    private int divCoordY = 0; 
-
     Image img = new Image("/images/charIcons/down.png", 250, 250, false, false); 
     ImageView im = new ImageView(img); 
 
@@ -97,34 +87,7 @@ public class OverworldController implements Initializable {
             default: 
                 break;
         }
-        
-                if (coordX == calCoordX && coordY == calCoordY) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
-            Parent root = loader.load();
-            SpiderBattleController controller = loader.getController();
-            Spider calamari = new Spider("Calamari", 2, 0, 10, 5);
-            calamari.setIcons("/images/calamari/neutralIcon.png", "/images/calamari/attackedIcon.png", "/images/calamari/attackingIcon.png");
-            controller.setSpider(calamari);
-
-            Scene subjectScene = new Scene(root);
-            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisStage.hide();
-            thisStage.setScene(subjectScene);
-            thisStage.show();
-        }
-        
-        
-        if (coordX==divCoordX && coordY==divCoordY) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/DivineBattle.fxml"));
-            Parent root = loader.load();
-
-            Scene subjectScene = new Scene(root);
-            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisStage.hide();
-            thisStage.setScene(subjectScene);
-            thisStage.show();
-        }
-     
+           
         img = new Image(fn[index], 250, 250, false, false); 
         im = new ImageView(img);
         grid.add(im, coordX, coordY);
@@ -132,9 +95,7 @@ public class OverworldController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        grid.add(im, coordX, coordY);        
-        grid.add(spider, calCoordX, calCoordY);
-        grid.add(divine, divCoordX, divCoordY);
+        grid.add(im, coordX, coordY);     
     }   
     
 }
