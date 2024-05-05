@@ -15,10 +15,12 @@ public class Player {
     private static Needle needle; 
     private static boolean curDef = false; //checks if player is "defending" for this round 
     public static Inventory pStorage; 
+    public static int coordX = 0; 
+    public static int coordY = 0; 
     
     
-    private static int curLevel = 1; 
-    private static int maxLevel = 8; 
+    public static int curLevel = 1; 
+    public static int maxLevel = 3; 
     
     private static Quest curQuest; 
     
@@ -29,7 +31,7 @@ public class Player {
         name = n; 
     }
     
-    public static void incCurLevel(int c) {
+    public static void incCurLevel() {
         curLevel++;
     }
     

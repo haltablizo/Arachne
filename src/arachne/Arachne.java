@@ -22,17 +22,9 @@ public class Arachne extends Application {
         Inventory.store(goldenApple,1);
         Inventory.store(lotus,3);
         Inventory.store(wheat,7);
-        Inventory.store(wine,1);
-        
-        Spider a = new Spider("a", 0,0,0, 1, 1);
-        Spider.levelOneSpids.add(a);
-        
-        Spider b = new Spider("b", 0,0,0, 1, 2);
-        Spider c = new Spider("c", 0,0,0, 2, 2);        
-        Spider.levelTwoSpids.add(a);
-        Spider.levelTwoSpids.add(a);
+        Inventory.store(wine,1);       
 
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/Overworld.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

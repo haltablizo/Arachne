@@ -71,15 +71,7 @@ public class SpiderBattleController implements Initializable {
     
     @FXML
     private void openInv(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml")); 
-        Parent root = loader.load(); 
-        InventoryController controller = loader.getController();
-        controller.setOpenedFrom("SpiderBattle");        
-        Scene subjectScene = new Scene(root);
-        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        thisStage.hide();
-        thisStage.setScene(subjectScene);
-        thisStage.show();
+
                
     }
     

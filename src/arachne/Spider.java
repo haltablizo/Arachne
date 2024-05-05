@@ -18,15 +18,6 @@ public class Spider {
     
     private int coordX;
     private int coordY;
-
-    public static List<Spider> levelOneSpids = new ArrayList<>(); 
-    public static List<Spider> levelTwoSpids = new ArrayList<>(); 
-    public static List<Spider> levelThreeSpids = new ArrayList<>(); 
-    public static List<Spider> levelFourSpids = new ArrayList<>(); 
-    public static List<Spider> levelFiveSpids = new ArrayList<>(); 
-    public static List<Spider> levelSixSpids = new ArrayList<>(); 
-    public static List<Spider> levelSevenSpids = new ArrayList<>(); 
-    public  static List<Spider> levelEightSpids = new ArrayList<>();
     
     public Spider(String n, int a, int m, int amt, int x, int y) {
         this.name = n; 
