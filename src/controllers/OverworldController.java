@@ -83,7 +83,7 @@ public class OverworldController implements Initializable {
                 index = 2; 
                 break;
             case D:
-                if ((Player.coordX+1)/4!=Player.maxLevel) Player.coordX++;
+                if ((Player.coordX+1)/4!=Player.level) Player.coordX++;
                 index = 3; 
                 break;
             case ESCAPE: 

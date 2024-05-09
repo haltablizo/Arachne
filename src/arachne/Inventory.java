@@ -6,11 +6,12 @@ import java.util.Map.Entry;
 
 public class Inventory {
     //public static Map<Powerup, Integer> invPowerup = new Hashtable<>(); 
-    public static Map<Equipment, Integer> invEquipment = new Hashtable<>(); 
+    //public static Map<Equipment, Integer> invEquipment = new Hashtable<>(); 
     
     
     public static LinkedHashMap<Powerup, Integer> invPowerup = new LinkedHashMap<>(9, (float) 0.75, true);
-    
+    public static LinkedHashMap<Equipment, Integer> invEquipment = new LinkedHashMap<>(9, (float) 0.75, true);
+
     
 
     private static int silk;
@@ -23,8 +24,8 @@ public class Inventory {
         invPowerup.put(item, amt); 
     }
     
-    public static void store(Equipment item, int amt) {
-        invEquipment.put(item, amt); 
+    public static void store(Equipment item) {
+        invEquipment.put(item, 1); 
     }
     
     public void discard(Powerup item, int amt) {

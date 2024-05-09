@@ -24,7 +24,23 @@ public class Arachne extends Application {
         Inventory.store(wheat,7);
         Inventory.store(wine,1);       
 
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/Overworld.fxml"));
+        Coat she = new Coat("she", "/images/equipmentIcons/she.png", 12);        
+        Coat iel = new Coat("iel", "/images/equipmentIcons/iel.png", 23);
+        Coat eld = new Coat("eld", "/images/equipmentIcons/eld.png", 40);
+        Needle swo = new Needle("swo", "/images/equipmentIcons/swo.png", 12);
+        Needle wor = new Needle("wor", "/images/equipmentIcons/wor.png", 1);
+        Needle ord = new Needle("ord", "/images/equipmentIcons/ord.png", 25);
+
+        Inventory.store(she);        
+        Inventory.store(iel);
+        Inventory.store(eld);
+        Inventory.store(swo);
+        Inventory.store(wor);
+        Inventory.store(ord);
+
+        
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/Inventory.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

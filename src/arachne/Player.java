@@ -19,8 +19,7 @@ public class Player {
     public static int coordY = 0; 
     
     
-    public static int curLevel = 1; 
-    public static int maxLevel = 3; 
+    public static int level = 3; 
     
     private static Quest curQuest; 
     
@@ -29,18 +28,6 @@ public class Player {
 
     public static void setName(String n) {
         name = n; 
-    }
-    
-    public static void incCurLevel() {
-        curLevel++;
-    }
-    
-    public static void decCurlevel(int c) {
-        maxLevel++;
-    }
-    
-    public static void incMaxLevel(int c) {
-        maxLevel++; 
     }
     
     public static void setCoat(Coat c) {

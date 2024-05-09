@@ -40,7 +40,7 @@
                         <Font size="40.0" />
                      </font>
                   </Text>
-                  <Button fx:id="closeInvButton" layoutX="914.0" layoutY="18.0" mnemonicParsing="false" onAction="#closeInv" text="Close">
+                  <Button fx:id="closeInvButton" layoutX="914.0" layoutY="18.0" mnemonicParsing="false" text="Close">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -53,12 +53,12 @@
                <children>
                   <VBox alignment="CENTER" layoutX="33.0" layoutY="213.0" prefHeight="251.0" prefWidth="185.0" spacing="20.0">
                      <children>
-                        <Button fx:id="potionTab" mnemonicParsing="false" text="Potion">
+                        <Button fx:id="potionTab" mnemonicParsing="false" onAction="#potionTab" text="Potion">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="weaponTab" mnemonicParsing="false" text="Weapon">
+                        <Button fx:id="weaponTab" mnemonicParsing="false" onAction="#weaponTab" text="Weapon">
                            <font>
                               <Font size="20.0" />
                            </font>

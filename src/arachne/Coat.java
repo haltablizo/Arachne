@@ -4,8 +4,8 @@ package arachne;
 public class Coat extends Equipment {
     private int defBonus;  
     
-    public Coat(String name, int defBonus) {
-        super(name);
+    public Coat(String name, String fn, int defBonus) {
+        super(name, fn);
         this.defBonus = defBonus; 
     }
     
