@@ -63,11 +63,6 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="potionTab1" mnemonicParsing="false" text="Stats">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
                      </children>
                   </VBox>
                </children>
@@ -92,7 +87,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="dropButton" mnemonicParsing="false" text="Drop">
+                              <Button fx:id="dropButton" mnemonicParsing="false" onAction="#drop" text="Drop">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

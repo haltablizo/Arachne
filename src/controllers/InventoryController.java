@@ -41,12 +41,33 @@ public class InventoryController implements Initializable {
     private boolean wt = false; 
     private Powerup sp;
     private Equipment se; 
+    
+    
+    @FXML
+    private void use(ActionEvent event) {
+        
+    }
+    
+    @FXML 
+    private void drop(ActionEvent event) {
+        if (pt==true) {
+            Inventory.invPowerup.remove(sp);
+            potion(); 
+        }
+        else {
+            Inventory.invEquipment.remove(se);
+            weapon(); 
+
+        }
+    }
 
     private void potionClicked(int index) {
         List<Entry<Powerup, Integer>> indexedList = new ArrayList<>(Inventory.invPowerup.entrySet());
         Map.Entry<Powerup, Integer> entry  = indexedList.get(index);
         Powerup key = entry.getKey();
         Integer value = entry.getValue();
+        
+        sp = key; 
                     
         Image img = new Image(key.getFn(), 150, 150, false, false);
         itemImage.setImage(img);
@@ -63,6 +84,8 @@ public class InventoryController implements Initializable {
         Equipment key = entry.getKey();
         Integer value = entry.getValue();
                     
+        se = key; 
+        
         Image img = new Image(key.getFn(), 150, 150, false, false);
         
         itemImage.setImage(img);
@@ -74,17 +97,26 @@ public class InventoryController implements Initializable {
     }
       
     private void potion() {
-
+    
+        setup(); 
+        potionGrid.getChildren().clear();
+        
         int tempI = Inventory.invPowerup.size()/3; 
         int tempJ = Inventory.invPowerup.size()%3; 
 
         for (int i=0; i<tempI; i++) {
             for(int j=0; j<3; j++) {
-                Image img = new Image("/images/spiderIcon.png", 150, 150, false, false); 
+                
+                int x = i*3+j;
+                
+                List<Entry<Powerup, Integer>> indexedList = new ArrayList<>(Inventory.invPowerup.entrySet());
+                Map.Entry<Powerup, Integer> entry  = indexedList.get(x);
+                Powerup key = entry.getKey();
+
+                Image img = new Image(key.getFn(), 150, 150, false, false); 
                 ImageView im = new ImageView(img);
                 potionGrid.add(im,j,i);
-                int x = i*3+j;
-
+                
                 im.setOnMouseClicked(e -> {
                     potionClicked(x); 
                 });
@@ -92,11 +124,16 @@ public class InventoryController implements Initializable {
         }
         
         for (int i=0; i<tempJ; i++) {
-            Image img = new Image("/images/spiderIcon.png", 150, 150, false, false); 
+            int x = tempI*3+i; 
+            List<Entry<Powerup, Integer>> indexedList = new ArrayList<>(Inventory.invPowerup.entrySet());
+            Map.Entry<Powerup, Integer> entry  = indexedList.get(x);
+            Powerup key = entry.getKey();
+                
+            Image img = new Image(key.getFn(), 150, 150, false, false); 
             ImageView im = new ImageView(img);
             potionGrid.add(im, i, tempI);
 
-            int x = tempI*3+i; 
+            
 
             im.setOnMouseClicked(e -> {
                 potionClicked(x); 
@@ -104,29 +141,23 @@ public class InventoryController implements Initializable {
         } 
     }
  
-    @FXML 
-    private void potionTab(ActionEvent event) {
+    private void weapon() {
+        setup(); 
         potionGrid.getChildren().clear();
-        potion(); 
-        pt = true; 
-        wt = false; 
-    }
-    
-    @FXML
-    public void weaponTab(ActionEvent event) {
-        pt = false; 
-        wt = true; 
-        potionGrid.getChildren().clear();
-
         int tempI = Inventory.invEquipment.size()/3; 
         int tempJ = Inventory.invEquipment.size()%3; 
 
         for (int i=0; i<tempI; i++) {
             for(int j=0; j<3; j++) {
-                Image img = new Image("/images/spiderIcon.png", 150, 150, false, false); 
+                int x = i*3+j;
+                
+                List<Entry<Equipment, Integer>> indexedList = new ArrayList<>(Inventory.invEquipment.entrySet());
+                Map.Entry<Equipment, Integer> entry  = indexedList.get(x);
+                Equipment key = entry.getKey();
+
+                Image img = new Image(key.getFn(), 150, 150, false, false); 
                 ImageView im = new ImageView(img);
                 potionGrid.add(im,j,i);
-                int x = i*3+j;
 
                 im.setOnMouseClicked(e -> {
                     weaponClicked(x); 
@@ -135,11 +166,18 @@ public class InventoryController implements Initializable {
         }
         
         for (int i=0; i<tempJ; i++) {
-            Image img = new Image("/images/spiderIcon.png", 150, 150, false, false); 
+            
+            int x = tempI*3+i; 
+                
+            List<Entry<Equipment, Integer>> indexedList = new ArrayList<>(Inventory.invEquipment.entrySet());
+            Map.Entry<Equipment, Integer> entry  = indexedList.get(x);
+            Equipment key = entry.getKey();
+
+            Image img = new Image(key.getFn(), 150, 150, false, false); 
             ImageView im = new ImageView(img);
             potionGrid.add(im, i, tempI);
 
-            int x = tempI*3+i; 
+           
 
             im.setOnMouseClicked(e -> {
                 weaponClicked(x); 
@@ -147,14 +185,34 @@ public class InventoryController implements Initializable {
         } 
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML 
+    private void potionTab(ActionEvent event) {
+        potion(); 
+        pt = true; 
+        wt = false; 
+    }
+    
+    @FXML
+    public void weaponTab(ActionEvent event) {
+        weapon(); 
+        pt = false; 
+        wt = true; 
+
+        
+    }
+    
+    private void setup() {
         itemImage.setImage(null);
         itemName.setText("");        
         itemDesc.setText("");
 
         useButton.setVisible(false);
         dropButton.setVisible(false);
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        potion();
     }
     
 }

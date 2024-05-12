@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class DivineBattleController implements Initializable {
 
-    Equipment e = new Equipment("E"); 
+    Equipment e = new Equipment("E", "/images/equipmentIcons/iel.png"); 
     Divine tyche =  new Divine("Tyche", e);
 
     List<Integer> images ; 

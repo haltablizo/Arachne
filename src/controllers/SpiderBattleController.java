@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -73,6 +74,21 @@ public class SpiderBattleController implements Initializable {
     private void openInv(ActionEvent event) throws IOException {
 
                
+    }
+    
+    @FXML
+    private void stat(ActionEvent event) {
+        Alert statsAlert = new Alert(Alert.AlertType.INFORMATION);
+        statsAlert.setTitle("Battle stats");
+        statsAlert.setHeaderText("Player Stats for " + Player.getName());
+
+        String playerStatText = "Name: " + Player.getName() + "\n"
+                + "Current HP/Max HP: " + Player.getHp() + "/" + Player.getMaxHp() + "\n"
+                + "Attack: " + Player.getAtk() + "\n"
+                + "Defense: " + Player.getDef();
+
+        statsAlert.setContentText(playerStatText);
+        statsAlert.showAndWait();
     }
     
     @Override

@@ -15,12 +15,20 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="atkButton1" mnemonicParsing="false" onAction="#attack" text="STATS" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="atkButton" mnemonicParsing="false" onAction="#attack" text="ATTACK" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets right="20.0" />
                </HBox.margin>
             </Button>
             <Button mnemonicParsing="false" text="DEFEND" textAlignment="CENTER">
@@ -28,7 +36,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets right="20.0" />
                </HBox.margin>
             </Button>
             <Button fx:id="invButton" mnemonicParsing="false" onAction="#openInv" text="ITEM" textAlignment="CENTER">
@@ -36,7 +44,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets right="20.0" />
                </HBox.margin>
             </Button>
             <Button fx:id="runButton" mnemonicParsing="false" onAction="#runAway" text="RUN" textAlignment="CENTER">
@@ -44,7 +52,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets right="20.0" />
                </HBox.margin>
             </Button>
          </children>
