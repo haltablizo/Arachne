@@ -1,12 +1,14 @@
 
 package controllers;
 
+import arachne.Map;
 import arachne.Player;
 import arachne.Settings;
 import arachne.Spider;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -35,32 +37,16 @@ public class OverworldController implements Initializable {
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
     private int index; 
     
-    Spider a = new Spider("a", 0,0,0, 1, 1); //level 1
-    
-    Spider b = new Spider("b", 0,0,0, 1, 2); //level 2
-    Spider c = new Spider("c", 0,0,0, 2, 2); //level 3 
-    
-    private Object[][] levelOneMap = {
-        {0,0,4},
-        {0,1,0},
-        {0,0,0},
-        {0,0,0}
-    }; 
-      
-    private Object[][] levelTwoMap = { //level*4 - 1 
-        {0,0,4},
-        {0,0,0},
-        {0,0,0},
-        {0,3,0},
-        {0,0,4},
-        {0,0,0},
-        {0,0,0},
-        {0,3,0}
-    };     
-    
     @FXML
     private void openInv(Event event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml"));
+        Parent root = loader.load();
 
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
     }
     
     @FXML 
@@ -100,9 +86,11 @@ public class OverworldController implements Initializable {
                 break;
         }
         
-        System.out.println("" + Player.coordX + Player.coordY);
+        Object s = Map.game.get(Player.level-1)[Player.coordX][Player.coordY];
         
-        //System.out.println(levelTwoMap[Player.coordX][Player.coordY]);
+        if(s instanceof Spider) {
+            System.out.println("sf");
+        }
         
         //setting the images
         img = new Image(fn[index], 250, 250, false, false); 
