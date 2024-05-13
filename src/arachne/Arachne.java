@@ -39,8 +39,35 @@ public class Arachne extends Application {
         Inventory.store(ord);
 
         
+        Spider a = new Spider("a", 0,0,0, 1, 1); //level 1
+    
+        Spider b = new Spider("b", 0,0,0, 1, 2); //level 2
+        Spider c = new Spider("c", 0,0,0, 2, 2); //level 3 
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/Inventory.fxml"));
+        Object[][] firstMap = {
+            {0,0,4},
+            {0,a,0},
+            {0,0,0},
+            {0,0,0}
+        };
+
+        Map levelOne = new Map(firstMap);
+        
+        Object[][] secondMap = { //level*4 - 1 
+            {0,0,4},
+            {0,0,b},
+            {0,0,0},
+            {0,3,0},
+            {0,0,4},
+            {c,0,0},
+            {0,0,0},
+            {0,3,0}
+        };
+        
+        Map levelTwo = new Map(secondMap);
+        
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/Overworld.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         
