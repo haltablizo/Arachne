@@ -51,7 +51,6 @@ public class OverworldController implements Initializable {
     
     @FXML 
     private void movement(KeyEvent event) throws IOException {
-        
         grid.getChildren().remove(im);
               
         switch(event.getCode()) {
@@ -60,6 +59,12 @@ public class OverworldController implements Initializable {
                 index = 0; 
                 break;
             case A:
+                if ((Player.coordX)%4==0) {
+                    System.out.println("df");
+                    setup(1);
+                    //setup((Player.coordX+1)/4 + 1);
+                }
+                
                 if(Player.coordX!=0) Player.coordX--;
                 index = 1; 
 
@@ -69,7 +74,14 @@ public class OverworldController implements Initializable {
                 index = 2; 
                 break;
             case D:
+                if ((Player.coordX+1)%4==0) {
+                    System.out.println("df");
+                    setup(2);
+                    //setup((Player.coordX+1)/4 + 1);
+                }
+                
                 if ((Player.coordX+1)/4!=Player.level) Player.coordX++;
+                
                 index = 3; 
                 break;
             case ESCAPE: 
@@ -98,9 +110,28 @@ public class OverworldController implements Initializable {
         grid.add(im, Player.coordX%4, Player.coordY);
     }    
     
+    private void setup(int x) {
+        grid.getChildren().clear();
+        
+        Image spid = new Image("/images/spiderIcon.png", 250, 250, false, false);
+        ImageView sp = new ImageView(spid); 
+                
+        Object[][] a = Map.game.get(Player.level-1);
+        for (int i=0; i<3; i++) {
+            for (int j=(x-1)*4; j<x*4; j++) {
+                
+                if (a[j][i] instanceof Spider) {
+                    grid.add(sp, j%4, i); 
+                }
+            }
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setup(1);
         grid.add(im, Player.coordX, Player.coordY);     
     }   
+    
     
 }

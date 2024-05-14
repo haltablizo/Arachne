@@ -19,7 +19,7 @@ public class Player {
     public static int coordY = 0; 
     
     
-    public static int level = 1; 
+    public static int level = 2; 
     
     private static Quest curQuest; 
     
