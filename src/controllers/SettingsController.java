@@ -43,9 +43,12 @@ public class SettingsController implements Initializable {
         thisStage.show();
     }
     
-    @FXML private void changeKey(ActionEvent event) throws IOException {
+    @FXML private void upKey(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/KeyChange.fxml"));
         Parent root = loader.load();
+        KeyChangeController controller = loader.getController();
+        controller.setOpenedFrom("UP");
+        
         Scene subjectScene = new Scene(root);
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         thisStage.hide();
@@ -56,6 +59,53 @@ public class SettingsController implements Initializable {
         root.requestFocus(); 
     }
     
+    @FXML private void downKey(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/KeyChange.fxml"));
+        Parent root = loader.load();
+        KeyChangeController controller = loader.getController();
+        controller.setOpenedFrom("DOWN");
+        
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+        
+        root.setFocusTraversable(true); 
+        root.requestFocus(); 
+    }
+    
+    @FXML private void leftKey(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/KeyChange.fxml"));
+        Parent root = loader.load();
+        KeyChangeController controller = loader.getController();
+        controller.setOpenedFrom("LEFT");
+        
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+        
+        root.setFocusTraversable(true); 
+        root.requestFocus(); 
+    }
+    
+    @FXML private void rightKey(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/KeyChange.fxml"));
+        Parent root = loader.load();
+        KeyChangeController controller = loader.getController();
+        controller.setOpenedFrom("RIGHT");        
+        
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+        
+        root.setFocusTraversable(true); 
+        root.requestFocus(); 
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

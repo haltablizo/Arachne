@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.*;
@@ -36,6 +37,9 @@ public class OverworldController implements Initializable {
 
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
     private int index; 
+    
+    
+    @FXML ProgressBar progBar; 
     
     @FXML
     private void openInv(Event event) throws IOException {
@@ -101,7 +105,22 @@ public class OverworldController implements Initializable {
         Object s = Map.game.get(Player.level-1)[Player.coordX][Player.coordY];
         
         if(s instanceof Spider) {
-            System.out.println("sf");
+            Spider a = (Spider) s; 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml")); 
+            Parent root = loader.load(); 
+            SpiderBattleController controller = loader.getController();
+            controller.setSpider(a);
+            controller.setIndex(index);
+
+            
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+            root.setFocusTraversable(true);
+            root.requestFocus();
         }
         
         //setting the images
@@ -129,6 +148,8 @@ public class OverworldController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        progBar.setProgress(Player.level/10.0);
         setup(1);
         grid.add(im, Player.coordX, Player.coordY);     
     }   

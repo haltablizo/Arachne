@@ -29,12 +29,15 @@ public class SpiderBattleController implements Initializable {
     @FXML Button runButton, atkButton; 
     @FXML ImageView opponentIcon; 
     private Spider spid; 
+    private int index;
     
     
     public void setSpider(Spider s) {
-        this.spid = s; 
-        opponentIcon.setImage(new Image(spid.getNeutralIcon(), 450, 450, false, false));
-        
+        this.spid = s;
+    }
+    
+    public void setIndex(int x) {
+        this.index = x; 
     }
     
     @FXML void attack(ActionEvent event) throws InterruptedException, IOException {
@@ -51,11 +54,25 @@ public class SpiderBattleController implements Initializable {
             root.setFocusTraversable(true);
             root.requestFocus();
         }
-        opponentIcon.setImage(new Image(spid.getAttackedIcon(), 450, 450, false, false));
     }
     
     @FXML 
     private void runAway(ActionEvent event) throws IOException {
+        switch (index) {
+            case 0: 
+                Player.coordY--; 
+                break; 
+            case 1: 
+                Player.coordX++; 
+                break;
+            case 2: 
+                Player.coordY++; 
+                break; 
+            case 3: 
+                Player.coordX--; 
+                break; 
+        }
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml")); 
         Parent root = loader.load(); 
         OverworldController controller = loader.getController();
@@ -72,7 +89,18 @@ public class SpiderBattleController implements Initializable {
     
     @FXML
     private void openInv(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml"));
+        Parent root = loader.load();
+        OverworldController controller = loader.getController();
 
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+
+        root.setFocusTraversable(true);
+        root.requestFocus();
                
     }
     
