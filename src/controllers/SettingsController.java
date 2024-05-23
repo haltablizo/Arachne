@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Key;
 import arachne.Settings;
 import java.io.IOException;
 import java.net.URL;
@@ -19,8 +20,14 @@ import javafx.stage.Stage;
 
 public class SettingsController implements Initializable {
 
+    @FXML Button upButton, downButton, leftButton, rightButton; 
+    
     @FXML
     private void cancel(ActionEvent event) throws IOException { 
+        Key.tempUp = Key.up;        
+        Key.tempDown = Key.down; 
+        Key.tempLeft = Key.left; 
+        Key.tempRight = Key.right;
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/MainMenu.fxml"));
         Parent root = loader.load(); 
@@ -33,7 +40,11 @@ public class SettingsController implements Initializable {
     }
     
     @FXML private void save(ActionEvent event) throws IOException {
-        
+        Key.up = Key.tempUp;        
+        Key.down = Key.tempDown; 
+        Key.left = Key.tempLeft; 
+        Key.right = Key.tempRight;
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/MainMenu.fxml"));
         Parent root = loader.load();
         Scene subjectScene = new Scene(root);
@@ -108,7 +119,10 @@ public class SettingsController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        upButton.setText("Key " + Key.tempUp);
+        downButton.setText("Key " + Key.tempDown);
+        leftButton.setText("Key " + Key.tempLeft);
+        rightButton.setText("Key " + Key.tempRight);      
     }    
     
 }

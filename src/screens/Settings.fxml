@@ -59,22 +59,22 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Button fx:id="upButton" mnemonicParsing="false" onAction="#changeKey" text="Key W" GridPane.columnIndex="1">
+            <Button fx:id="upButton" mnemonicParsing="false" onAction="#upKey" GridPane.columnIndex="1">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button fx:id="leftButton" mnemonicParsing="false" text="Key A" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="leftButton" mnemonicParsing="false" onAction="#leftKey" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button fx:id="rightButton" mnemonicParsing="false" text="Key D" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="rightButton" mnemonicParsing="false" onAction="#rightKey" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button fx:id="downButton" mnemonicParsing="false" text="Key S" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="downButton" mnemonicParsing="false" onAction="#downKey" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="25.0" />
                </font>
