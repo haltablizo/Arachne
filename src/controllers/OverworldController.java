@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Key;
 import arachne.Map;
 import arachne.Player;
 import arachne.Settings;
@@ -20,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import static javafx.scene.input.KeyCode.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -31,6 +33,8 @@ import javafx.stage.Stage;
 public class OverworldController implements Initializable {
 
     @FXML GridPane grid;
+    @FXML ImageView overworldBackground;
+    
     
     Image img = new Image("/images/charIcons/down.png", 250, 250, false, false); 
     ImageView im = new ImageView(img); 
@@ -39,7 +43,7 @@ public class OverworldController implements Initializable {
     private int index; 
     
     
-    @FXML ProgressBar progBar; 
+    @FXML ProgressBar progBar;
     
     @FXML
     private void openInv(Event event) throws IOException {
@@ -56,55 +60,69 @@ public class OverworldController implements Initializable {
     @FXML 
     private void movement(KeyEvent event) throws IOException {
         grid.getChildren().remove(im);
+        
+        KeyCode upKey = KeyCode.valueOf(Key.up);
+        KeyCode downKey = KeyCode.valueOf(Key.down);
+        KeyCode leftKey = KeyCode.valueOf(Key.left);
+        KeyCode rightKey = KeyCode.valueOf(Key.right);
               
-        switch(event.getCode()) {
-            case W:
-                if (Player.coordY!=0) Player.coordY--; 
+        if (event.getCode() == upKey) {
+            if (Player.coordY!=0) Player.coordY--; 
                 index = 0; 
-                break;
-            case A:
-                if ((Player.coordX)%4==0) {
-                    System.out.println("df");
-                    setup(1);
-                    //setup((Player.coordX+1)/4 + 1);
-                }
-                
-                if(Player.coordX!=0) Player.coordX--;
-                index = 1; 
+        }
+        else if (event.getCode() == leftKey) {
+            if ((Player.coordX) % 4 == 0) {
+                System.out.println("df");
+                setup((Player.coordX) / 4 + 1);
+            }
 
-                break;     
-            case S:    
-                if(Player.coordY!=2)Player.coordY++;
-                index = 2; 
-                break;
-            case D:
-                if ((Player.coordX+1)%4==0) {
-                    System.out.println("df");
-                    setup(2);
-                    //setup((Player.coordX+1)/4 + 1);
-                }
-                
-                if ((Player.coordX+1)/4!=Player.level) Player.coordX++;
-                
-                index = 3; 
-                break;
-            case ESCAPE: 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/MainMenu.fxml"));
-                Parent root = loader.load();
+            if (Player.coordX != 0) {
+                Player.coordX--;
+            }
+            index = 1;
+        }
+        
+        else if (event.getCode() == downKey){
+            if (Player.coordY != 2) {
+                Player.coordY++;
+            }
+            index = 2;
+        }
+        
+        else if (event.getCode() == rightKey){
+            if ((Player.coordX + 1) % 4 == 0 && (Player.coordX + 1) / 4 != Player.level) {
+                System.out.println((Player.coordX + 1) / 4);
+                //setup(2);
+                setup((Player.coordX + 1) / 4 + 1);
+            }
+            if ((Player.coordX + 1) / 4 != Player.level) {
+                Player.coordX++;
+            }
+            System.out.println("D: " + Player.coordX);
 
-                Scene subjectScene = new Scene(root);
-                Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                thisStage.hide();
-                thisStage.setScene(subjectScene);
-                thisStage.show();
-                break; 
-            default: 
-                break;
+            index = 3;
+        }
+        
+        else if (event.getCode() == ESCAPE){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/MainMenu.fxml"));
+            Parent root = loader.load();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+        }
+        
+        else {
+            
         }
         
         Object s = Map.game.get(Player.level-1)[Player.coordX][Player.coordY];
         
         if(s instanceof Spider) {
+            
+
             Spider a = (Spider) s; 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml")); 
             Parent root = loader.load(); 
@@ -151,7 +169,11 @@ public class OverworldController implements Initializable {
         
         progBar.setProgress(Player.level/10.0);
         setup(1);
-        grid.add(im, Player.coordX, Player.coordY);     
+        grid.add(im, Player.coordX, Player.coordY);  
+        String file = "/images/overworldBg/" + "level" + Player.level + ".png";
+        Image ov = new Image(file, 1000, 750, false, false); 
+        overworldBackground.setImage(ov);
+        
     }   
     
     

@@ -60,13 +60,13 @@ public class SpiderBattleController implements Initializable {
     private void runAway(ActionEvent event) throws IOException {
         switch (index) {
             case 0: 
-                Player.coordY--; 
+                Player.coordY++; 
                 break; 
             case 1: 
                 Player.coordX++; 
                 break;
             case 2: 
-                Player.coordY++; 
+                Player.coordY--; 
                 break; 
             case 3: 
                 Player.coordX--; 

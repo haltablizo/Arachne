@@ -15,14 +15,6 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="statButton" mnemonicParsing="false" onAction="#stat" text="STATS" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Button>
             <Button fx:id="atkButton" mnemonicParsing="false" onAction="#attack" text="ATTACK" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
@@ -32,6 +24,14 @@
                </HBox.margin>
             </Button>
             <Button mnemonicParsing="false" text="DEFEND" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="statButton" mnemonicParsing="false" onAction="#stat" text="STATS" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
