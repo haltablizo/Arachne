@@ -21,8 +21,6 @@ public class Player {
     
     public static int level = 8; 
     
-    private static Quest curQuest; 
-    
     public static List<Integer> hand = new ArrayList(); 
     
 
@@ -73,26 +71,34 @@ public class Player {
         hp-=i;
     }
 
-    public static boolean attack(Spider s) {
-        System.out.println("-----------------");
-            System.out.println("attacked"); 
-            s.reduceHP(atk); 
-                 
-            if (s.getHp() > 0) {
-                System.out.println("spid not dead"); 
-                s.attack(); 
-                System.out.println("Spider: " + s.getHp()); 
-                System.out.println("Player: " + hp); 
-                return false; 
-            } 
-            else {
-                System.out.println("spid dead"); 
-                System.out.println("Spider: " + s.getHp()); 
-                System.out.println("Player: " + hp); 
-                //pStorage.pickUpSilk(s.getAmtOfSilk());  
-                return true; 
-            }       
+    public static boolean[] attack(Spider s) {
         
+        boolean spidState = false; 
+        boolean playerState = false; 
+        
+        System.out.println("attacked"); 
+        s.reduceHP(atk); 
+
+        if (s.getHp() > 0) {
+            System.out.println("spid not dead"); 
+            s.attack(); 
+            System.out.println("Spider: " + s.getHp()); 
+            System.out.println("Player: " + hp); 
+            if (Player.getHp() == 0) {
+                playerState = true; 
+            }
+        } 
+        
+        else {
+            System.out.println("spid dead"); 
+            System.out.println("Spider: " + s.getHp()); 
+            System.out.println("Player: " + hp); 
+            //pStorage.pickUpSilk(s.getAmtOfSilk()); 
+            spidState = true; 
+        }      
+        boolean[] a = {spidState, playerState}; 
+
+        return a; 
 
     }
     
@@ -110,15 +116,6 @@ public class Player {
         def += p.getDefInc(); 
         atk += p.getAtkInc(); 
         maxHp += p.getMaxHpInc(); 
-    }
-        
-    public static void setQuest(Quest q) {
-        curQuest = q; 
-    }
-    
-    public static void pursueQuest() {
-        curQuest.complete(); 
-        popMeter += curQuest.getPopInc(); 
     }
     
     public static int getHandSum() {

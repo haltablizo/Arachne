@@ -41,10 +41,12 @@ public class SpiderBattleController implements Initializable {
     }
     
     @FXML void attack(ActionEvent event) throws InterruptedException, IOException {
-        if (Player.attack(spid)) {
+        boolean[] x = Player.attack(spid); 
+        if (x[0] && !x[1]) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/WinScreen.fxml")); 
             Parent root = loader.load(); 
-
+            WinScreenController controller = loader.getController();
+            
             Scene subjectScene = new Scene(root);
             Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             thisStage.hide();
@@ -53,6 +55,24 @@ public class SpiderBattleController implements Initializable {
 
             root.setFocusTraversable(true);
             root.requestFocus();
+        }
+        else if (x[1]) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/GameOverScreen.fxml")); 
+            Parent root = loader.load(); 
+            GameOverScreenController controller = loader.getController();
+            controller.setIndex(index); 
+            
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        }
+        else {
+            //blank else 
         }
     }
     
@@ -72,6 +92,8 @@ public class SpiderBattleController implements Initializable {
                 Player.coordX--; 
                 break; 
         }
+        
+        System.out.println(Player.coordX + ", " + Player.coordY); 
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml")); 
         Parent root = loader.load(); 
@@ -108,7 +130,7 @@ public class SpiderBattleController implements Initializable {
     private void stat(ActionEvent event) {
         Alert statsAlert = new Alert(Alert.AlertType.INFORMATION);
         statsAlert.setTitle("Battle stats");
-        statsAlert.setHeaderText("Player Stats for " + Player.getName());
+        statsAlert.setHeaderText("Player Stats for Arachne");
 
         String playerStatText = "Name: " + Player.getName() + "\n"
                 + "Current HP/Max HP: " + Player.getHp() + "/" + Player.getMaxHp() + "\n"

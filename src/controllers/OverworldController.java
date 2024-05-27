@@ -1,6 +1,8 @@
 
 package controllers;
 
+import arachne.Divine;
+import arachne.Human;
 import arachne.Key;
 import arachne.Map;
 import arachne.Player;
@@ -42,6 +44,12 @@ public class OverworldController implements Initializable {
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
     private int index; 
     
+    Image spid = new Image("/images/spiderIcon.png", 250, 250, false, false);
+    ImageView sp = new ImageView(spid); 
+    
+    Image hum = new Image("/images/placeholder.jpg", 250, 250, false, false);
+    ImageView h = new ImageView(hum); 
+    
     
     @FXML ProgressBar progBar;
     
@@ -71,12 +79,13 @@ public class OverworldController implements Initializable {
                 index = 0; 
         }
         else if (event.getCode() == leftKey) {
-            if ((Player.coordX) % 4 == 0) {
-                System.out.println("df");
-                setup((Player.coordX) / 4 + 1);
-            }
+            
 
             if (Player.coordX != 0) {
+                if ((Player.coordX) % 4 == 0) {
+                    System.out.println("df");
+                    setup((Player.coordX) / 4);
+                }
                 Player.coordX--;
             }
             index = 1;
@@ -120,9 +129,7 @@ public class OverworldController implements Initializable {
         
         Object s = Map.game.get(Player.level-1)[Player.coordX][Player.coordY];
         
-        if(s instanceof Spider) {
-            
-
+        if(s instanceof Spider && Map.spider == true) {
             Spider a = (Spider) s; 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml")); 
             Parent root = loader.load(); 
@@ -141,23 +148,43 @@ public class OverworldController implements Initializable {
             root.requestFocus();
         }
         
+        if (s instanceof Human && Map.humanFirst == true) {
+            dialogue();
+            Map.humanFirstChecker();
+            setup((Player.coordX) / 4 + 1);
+        }
+        
+        if (s instanceof Divine && Map.god == true) {
+
+        }
+        
+        if (s instanceof Human && Map.humanSecond == true) {
+            dialogue();
+        }
+        
         //setting the images
         img = new Image(fn[index], 250, 250, false, false); 
         im = new ImageView(img);
         grid.add(im, Player.coordX%4, Player.coordY);
     }    
     
+    private void dialogue() {
+        
+    }
+    
     private void setup(int x) {
         grid.getChildren().clear();
-        
-        Image spid = new Image("/images/spiderIcon.png", 250, 250, false, false);
-        ImageView sp = new ImageView(spid); 
                 
         Object[][] a = Map.game.get(Player.level-1);
+        
+        if (a[0][2] instanceof Human && Map.humanFirst == true) {
+            grid.add(sp, 0, 2);
+        }
+        
         for (int i=0; i<3; i++) {
             for (int j=(x-1)*4; j<x*4; j++) {
                 
-                if (a[j][i] instanceof Spider) {
+                if (a[j][i] instanceof Spider && Map.spider == true) {
                     grid.add(sp, j%4, i); 
                 }
             }
@@ -167,9 +194,12 @@ public class OverworldController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        System.out.println(Player.coordX + ", " + Player.coordY);
         progBar.setProgress(Player.level/10.0);
-        setup(1);
-        grid.add(im, Player.coordX, Player.coordY);  
+        
+        setup(Player.coordX/4 + 1);
+        
+        grid.add(im, Player.coordX%4, Player.coordY);  
         String file = "/images/overworldBg/" + "level" + Player.level + ".png";
         Image ov = new Image(file, 1000, 750, false, false); 
         overworldBackground.setImage(ov);

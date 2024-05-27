@@ -28,20 +28,7 @@ public class MainMenuController implements Initializable {
        
     @FXML 
     private void newGame (ActionEvent event) throws IOException {
-        Alert usernameAlert = new Alert(AlertType.CONFIRMATION);
-        usernameAlert.setTitle("New Game");
-        usernameAlert.setHeaderText("Enter your username:");
-
-        TextField usernameField = new TextField();
-        Label usernameLabel = new Label("Username:");
-        usernameAlert.getDialogPane().setContent(usernameLabel);
-        usernameAlert.getDialogPane().setContent(usernameField);
-        
-        
-        usernameAlert.showAndWait();
-        Player.setName(usernameField.getText()); 
-
-        
+                
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
         Parent root = loader.load(); 
         OverworldController controller = loader.getController();

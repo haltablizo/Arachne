@@ -40,9 +40,10 @@ public class Arachne extends Application {
 
         
         Spider a = new Spider("a", 0,0,0); //level 1 
+        Human p1 = new Human("asa", ambrosia);
         
         Object[][] firstMap = {
-            {0,0,0},
+            {0,0,p1},
             {0,a,0},
             {0,0,0},
             {0,0,0}
@@ -51,9 +52,10 @@ public class Arachne extends Application {
         
         Spider b = new Spider("b", 0,0,0); //level 2
         Spider c = new Spider("c", 0,0,0); //level 2
+        Human p2 = new Human("abab", ambrosia);
         
         Object[][] secondMap = { //level*4 - 1 
-            {0,0,0},
+            {0,0,p2},
             {0,0,b},
             {0,0,0},
             {0,0,0},
@@ -67,9 +69,10 @@ public class Arachne extends Application {
         Spider d = new Spider("d", 0,0,0); //level 3
         Spider e = new Spider("e", 0,0,0); //level 3 
         Spider f = new Spider("f", 0,0,0); //level 3 
+        Human p3 = new Human("arar", ambrosia);
         
         Object[][] thirdMap = { 
-            {0,0,0},
+            {0,0,p3},
             {0,d,0},
             {0,0,0},
             {0,0,0},
@@ -90,9 +93,10 @@ public class Arachne extends Application {
         Spider h = new Spider("h", 0,0,0); //level 4 
         Spider i = new Spider("i", 0,0,0); //level 4 
         Spider j = new Spider("j", 0,0,0); //level 4
-       
+        Human p4 = new Human("beep", ambrosia);
+        
         Object[][] fourthMap = { 
-            {0,0,0},
+            {0,0,p4},
             {g,0,0},
             {0,0,0},
             {0,0,0},
@@ -119,9 +123,10 @@ public class Arachne extends Application {
         Spider m = new Spider("m", 0,0,0); //level 5 
         Spider n = new Spider("n", 0,0,0); //level 5
         Spider o = new Spider("o", 0,0,0); //level 5
+        Human p5 = new Human("wee", ambrosia);
         
         Object[][] fifthMap = { 
-            {0,0,0},
+            {0,0,p5},
             {k,0,0},
             {0,0,0},
             {0,0,0},
@@ -155,9 +160,10 @@ public class Arachne extends Application {
         Spider s = new Spider("s", 0,0,0); //level 6
         Spider t = new Spider("t", 0,0,0); //level 6
         Spider u = new Spider("u", 0,0,0); //level 6
+        Human p6 = new Human("phys", ambrosia);
         
         Object[][] sixthMap = { 
-            {0,0,0},
+            {0,0,p6},
             {0,0,p},
             {0,0,0},
             {0,0,0},
@@ -197,9 +203,10 @@ public class Arachne extends Application {
         Spider z = new Spider("z", 0,0,0); //level 7
         Spider aa = new Spider("aa", 0,0,0); //level 7
         Spider ab = new Spider("ab", 0,0,0); //level 7
+        Human p7 = new Human("yeehaw", ambrosia);
         
         Object[][] seventhMap = { 
-            {0,0,0},
+            {0,0,p7},
             {0,v,0},
             {0,0,0},
             {0,0,0},
@@ -236,7 +243,7 @@ public class Arachne extends Application {
         };
         Map levelSeven = new Map(seventhMap);
         
-        Spider ac = new Spider("v", 0,0,0); //level 8
+        Spider ac = new Spider("v", 200,10,0); //level 8
         Spider ad = new Spider("w", 0,0,0); //level 8 
         Spider ae = new Spider("x", 0,0,0); //level 8 
         Spider af = new Spider("y", 0,0,0); //level 8
@@ -244,9 +251,11 @@ public class Arachne extends Application {
         Spider ah = new Spider("aa", 0,0,0); //level 8
         Spider ai = new Spider("ab", 0,0,0); //level 8
         Spider aj = new Spider("ab", 0,0,0); //level 8
+        Human p8 = new Human("paint", ambrosia);
+        
         
         Object[][] eighthMap = { 
-            {0,0,0},
+            {0,0,p8},
             {0,0,0},
             {ac,0,0},
             {0,0,0},
@@ -288,7 +297,7 @@ public class Arachne extends Application {
         };
         Map levelEight = new Map(eighthMap);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/DivineBattle.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

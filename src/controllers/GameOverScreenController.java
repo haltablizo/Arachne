@@ -1,6 +1,9 @@
 
 package controllers;
 
+import arachne.Player;
+import arachne.Spider;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -10,29 +13,64 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import static javafx.scene.input.KeyCode.A;
-import static javafx.scene.input.KeyCode.D;
-import static javafx.scene.input.KeyCode.ESCAPE;
-import static javafx.scene.input.KeyCode.S;
-import static javafx.scene.input.KeyCode.W;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 
 public class GameOverScreenController implements Initializable {
 
+    private int index;
+    private Spider sp; 
+    
+    public void setSpider(Spider s) {
+        this.sp = s;
+    }
+    
+    public void setIndex(int x) {
+        this.index = x; 
+    }
+    
     @FXML
-    private void quitGame(KeyEvent event) {
-        System.out.println("ran");
-        switch(event.getCode()) {
-
-        case ESCAPE: 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
-            stage.close(); 
-        default: 
-            break;
+    private void overworld(ActionEvent event) throws IOException {
+        switch (index) {
+            case 0:
+                Player.coordY++;
+                break;
+            case 1:
+                Player.coordX++;
+                break;
+            case 2:
+                Player.coordY--;
+                break;
+            case 3:
+                Player.coordX--;
+                break;
         }
-        
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+        Parent root = loader.load();
+
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+
+        root.setFocusTraversable(true);
+        root.requestFocus();
+    }
+    
+    @FXML
+    private void tryAgain(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
+        Parent root = loader.load();
+        SpiderBattleController controller = loader.getController();
+        controller.setSpider(sp);
+
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
     }
     
     @Override
