@@ -41,12 +41,13 @@ public class Arachne extends Application {
         
         Spider a = new Spider("a", 0,0,0); //level 1 
         Human p1 = new Human("asa", ambrosia);
+        Divine d1 = new Divine("askdj", she); 
         
         Object[][] firstMap = {
             {0,0,p1},
             {0,a,0},
             {0,0,0},
-            {0,0,0}
+            {0,d1,0}
         };
         Map levelOne = new Map(firstMap);
         

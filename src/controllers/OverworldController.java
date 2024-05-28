@@ -85,7 +85,6 @@ public class OverworldController implements Initializable {
 
             if (Player.coordX != 0) {
                 if ((Player.coordX) % 4 == 0) {
-                    System.out.println("df");
                     setup((Player.coordX) / 4);
                 }
                 Player.coordX--;
@@ -102,14 +101,12 @@ public class OverworldController implements Initializable {
         
         else if (event.getCode() == rightKey){
             if ((Player.coordX + 1) % 4 == 0 && (Player.coordX + 1) / 4 != Player.level) {
-                System.out.println((Player.coordX + 1) / 4);
                 //setup(2);
                 setup((Player.coordX + 1) / 4 + 1);
             }
             if ((Player.coordX + 1) / 4 != Player.level) {
                 Player.coordX++;
             }
-            System.out.println("D: " + Player.coordX);
 
             index = 3;
         }
@@ -156,7 +153,18 @@ public class OverworldController implements Initializable {
             setup((Player.coordX) / 4 + 1);
         }
         
+        System.out.println(Map.divine);
+        System.out.println(s instanceof Divine);
+        
         if (s instanceof Divine && Map.divine == true) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/DivineBattle.fxml"));
+            Parent root = loader.load();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
 
         }
         
@@ -197,7 +205,7 @@ public class OverworldController implements Initializable {
         Map.spiderChecker();
         
         if(x==Player.level && Map.divine == true) {
-            grid.add(sp, 0, 2); 
+            grid.add(sp, 3, 1); 
         }
       
     }
@@ -205,7 +213,6 @@ public class OverworldController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        System.out.println(Player.coordX + ", " + Player.coordY);
         progBar.setProgress(Player.level/10.0);
         
         setup(Player.coordX/4 + 1);
