@@ -254,6 +254,7 @@ public class Arachne extends Application {
         Human p8 = new Human("paint", ambrosia);
         
         
+        
         Object[][] eighthMap = { 
             {0,0,p8},
             {0,0,0},
@@ -297,7 +298,7 @@ public class Arachne extends Application {
         };
         Map levelEight = new Map(eighthMap);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/DivineBattle.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

@@ -20,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -147,14 +149,14 @@ public class OverworldController implements Initializable {
             root.setFocusTraversable(true);
             root.requestFocus();
         }
-        
+                
         if (s instanceof Human && Map.humanFirst == true) {
             dialogue();
             Map.humanFirstChecker();
             setup((Player.coordX) / 4 + 1);
         }
         
-        if (s instanceof Divine && Map.god == true) {
+        if (s instanceof Divine && Map.divine == true) {
 
         }
         
@@ -169,7 +171,9 @@ public class OverworldController implements Initializable {
     }    
     
     private void dialogue() {
-        
+        Alert ac = new Alert(AlertType.INFORMATION);
+        ac.setTitle("Jadwon");
+        ac.showAndWait();
     }
     
     private void setup(int x) {
@@ -177,7 +181,7 @@ public class OverworldController implements Initializable {
                 
         Object[][] a = Map.game.get(Player.level-1);
         
-        if (a[0][2] instanceof Human && Map.humanFirst == true) {
+        if (x==1 && Map.humanFirst == true) {
             grid.add(sp, 0, 2);
         }
         
@@ -189,6 +193,13 @@ public class OverworldController implements Initializable {
                 }
             }
         }
+        
+        Map.spiderChecker();
+        
+        if(x==Player.level && Map.divine == true) {
+            grid.add(sp, 0, 2); 
+        }
+      
     }
     
     @Override

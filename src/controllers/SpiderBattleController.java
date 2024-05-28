@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Map;
 import arachne.Player;
 import arachne.Spider;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class SpiderBattleController implements Initializable {
     @FXML void attack(ActionEvent event) throws InterruptedException, IOException {
         boolean[] x = Player.attack(spid); 
         if (x[0] && !x[1]) {
+            Map.incSpid();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/WinScreen.fxml")); 
             Parent root = loader.load(); 
             WinScreenController controller = loader.getController();

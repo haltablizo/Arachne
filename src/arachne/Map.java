@@ -12,7 +12,7 @@ public class Map {
     
     public static boolean humanFirst = true;     
     public static boolean spider = false; 
-    public static boolean god = false; 
+    public static boolean divine = false; 
     public static boolean humanSecond = false; 
     public static boolean portal = false; 
     
@@ -21,6 +21,10 @@ public class Map {
     public Map(Object[][] arr) {
         this.layout = arr; 
         game.add(arr); 
+    }
+    
+    public static void incSpid() {
+        spidCount++; 
     }
     
     public static void humanFirstChecker() {
@@ -33,13 +37,13 @@ public class Map {
     public static void spiderChecker() {
         if (spidCount == Player.level) {
             spider = false;
-            god = true;
+            divine = true;
         }
     }
     
-    public static void godChecker() {
-        if (god == true) {
-            god = false;
+    public static void divineChecker() {
+        if (divine == true) {
+            divine = false;
             portal = true;      
             humanSecond = true; 
         }
@@ -49,9 +53,10 @@ public class Map {
         if (portal == true) {
             humanFirst = false;     
             spider = false;
-            god = false;
+            divine = false;
             humanSecond = false;
             portal = false;
+            spidCount = 0; 
         }
     }
 }
