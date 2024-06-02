@@ -3,6 +3,7 @@ package controllers;
 
 import arachne.Divine;
 import arachne.Equipment;
+import arachne.Map;
 import arachne.Player;
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +40,8 @@ public class DivineBattleController implements Initializable {
     
     @FXML Button hitButton, standButton; 
     
+    private boolean win = false; 
+    
     @FXML
     private void hit(ActionEvent event) {
         standButton.setDisable(false);
@@ -71,27 +74,34 @@ public class DivineBattleController implements Initializable {
             
             }
         
-        if (bust!=3) end(); 
-        
+        if (bust!=3) {
+            stand(); 
+            end(); 
+        }
     }
 
     @FXML
-    private void stand(ActionEvent event) {
-        
+    private void stand(ActionEvent event) { 
+        stand();   
+        end(); 
+    }
+    
+    public void stand() {
         int status = Player.endDivineGame(tyche); 
         switch (status) {
             case 0: 
-                System.out.println("you lose"); 
+                win = false; 
+                dialogue("BUST!");
                 break;
             case 1: 
-                System.out.println("you win"); 
+                win = true; 
+                dialogue("WIN!"); 
                 break; 
             case 2: 
-                System.out.println("draw"); 
+                win = false; 
+                dialogue("DRAW!");
                 break; 
         }
-        
-        end(); 
     }
     
     private void end() {
@@ -108,19 +118,22 @@ public class DivineBattleController implements Initializable {
         
         //disable buttons
         hitButton.setDisable(true); 
-        standButton.setDisable(true); 
-        
-        dialogue(); 
+        standButton.setDisable(true);    
     }
     
-    private void dialogue() {
+    private void dialogue(String s) {
         Alert ac = new Alert(Alert.AlertType.INFORMATION);
-        ac.setTitle("Jadwon");
+        ac.setTitle(s);
         ac.showAndWait();
     }
     
     @FXML
     private void exit(ActionEvent event) throws IOException  {
+                
+        if (win) {
+            Map.divineChecker(); 
+        }
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
         Parent root = loader.load();
         Scene subjectScene = new Scene(root);

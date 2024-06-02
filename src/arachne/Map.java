@@ -38,6 +38,7 @@ public class Map {
         if (spidCount == Player.level) {
             spider = false;
             divine = true;
+            spidCount = 0; 
         }
     }
     
@@ -51,7 +52,7 @@ public class Map {
     
     public static void reset() {
         if (portal == true) {
-            humanFirst = false;     
+            humanFirst = true;     
             spider = false;
             divine = false;
             humanSecond = false;

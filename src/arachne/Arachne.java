@@ -299,7 +299,7 @@ public class Arachne extends Application {
         };
         Map levelEight = new Map(eighthMap);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/Overworld.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

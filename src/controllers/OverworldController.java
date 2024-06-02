@@ -36,6 +36,8 @@ import javafx.stage.Stage;
 
 public class OverworldController implements Initializable {
 
+    Object[][] map; 
+    
     @FXML GridPane grid;
     @FXML ImageView overworldBackground;
     
@@ -44,13 +46,16 @@ public class OverworldController implements Initializable {
     ImageView im = new ImageView(img); 
 
     String[] fn = {"/images/charIcons/up.png", "/images/charIcons/left.png", "/images/charIcons/down.png", "/images/charIcons/right.png"};
-    private int index; 
+    private int index = 2; 
     
     Image spid = new Image("/images/spiderIcon.png", 250, 250, false, false);
     ImageView sp = new ImageView(spid); 
     
     Image hum = new Image("/images/placeholder.jpg", 250, 250, false, false);
     ImageView h = new ImageView(hum); 
+    
+    Image portal = new Image("/images/divinePlaceholder.png", 250, 250, false, false);
+    ImageView p = new ImageView(portal); 
     
     
     @FXML ProgressBar progBar;
@@ -126,7 +131,7 @@ public class OverworldController implements Initializable {
             
         }
         
-        Object s = Map.game.get(Player.level-1)[Player.coordX][Player.coordY];
+        Object s = map[Player.coordX][Player.coordY];
         
         if(s instanceof Spider && Map.spider == true) {
             Spider a = (Spider) s; 
@@ -153,10 +158,8 @@ public class OverworldController implements Initializable {
             setup((Player.coordX) / 4 + 1);
         }
         
-        System.out.println(Map.divine);
-        System.out.println(s instanceof Divine);
-        
         if (s instanceof Divine && Map.divine == true) {
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/DivineBattle.fxml"));
             Parent root = loader.load();
 
@@ -165,6 +168,8 @@ public class OverworldController implements Initializable {
             thisStage.hide();
             thisStage.setScene(subjectScene);
             thisStage.show();
+            
+            
 
         }
         
@@ -172,6 +177,23 @@ public class OverworldController implements Initializable {
             dialogue();
         }
         
+        if (s instanceof Divine && Map.portal == true) {
+            Map.reset(); 
+            Player.level++; 
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+            Parent root = loader.load();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+            
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        }
+         
         //setting the images
         img = new Image(fn[index], 250, 250, false, false); 
         im = new ImageView(img);
@@ -186,8 +208,6 @@ public class OverworldController implements Initializable {
     
     private void setup(int x) {
         grid.getChildren().clear();
-                
-        Object[][] a = Map.game.get(Player.level-1);
         
         if (x==1 && Map.humanFirst == true) {
             grid.add(sp, 0, 2);
@@ -196,7 +216,7 @@ public class OverworldController implements Initializable {
         for (int i=0; i<3; i++) {
             for (int j=(x-1)*4; j<x*4; j++) {
                 
-                if (a[j][i] instanceof Spider && Map.spider == true) {
+                if (map[j][i] instanceof Spider && Map.spider == true) {
                     grid.add(sp, j%4, i); 
                 }
             }
@@ -207,11 +227,18 @@ public class OverworldController implements Initializable {
         if(x==Player.level && Map.divine == true) {
             grid.add(sp, 3, 1); 
         }
+        
+        if (x==Player.level && Map.portal == true) {
+            grid.add(p, 3, 1); 
+            grid.add(h, 3, 0); 
+        }
       
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        map = Map.game.get(Player.level-1); 
         
         progBar.setProgress(Player.level/10.0);
         
