@@ -93,6 +93,7 @@ public class Player {
             System.out.println("spid dead"); 
             System.out.println("Spider: " + s.getHp()); 
             System.out.println("Player: " + hp); 
+            s.resetHp(); 
             //pStorage.pickUpSilk(s.getAmtOfSilk()); 
             spidState = true; 
         }      

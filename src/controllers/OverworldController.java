@@ -180,18 +180,35 @@ public class OverworldController implements Initializable {
         if (s instanceof Divine && Map.portal == true) {
             Map.reset(); 
             Player.level++; 
+            Player.coordX = 0; Player.coordY = 0; 
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
-            Parent root = loader.load();
+            if (Player.level == 8) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/FinalLevel.fxml"));
+                Parent root = loader.load();
 
-            Scene subjectScene = new Scene(root);
-            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisStage.hide();
-            thisStage.setScene(subjectScene);
-            thisStage.show();
+                Scene subjectScene = new Scene(root);
+                Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStage.hide();
+                thisStage.setScene(subjectScene);
+                thisStage.show();
+
+                root.setFocusTraversable(true);
+                root.requestFocus();
+            }
             
-            root.setFocusTraversable(true);
-            root.requestFocus();
+            else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+                Parent root = loader.load();
+
+                Scene subjectScene = new Scene(root);
+                Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStage.hide();
+                thisStage.setScene(subjectScene);
+                thisStage.show();
+
+                root.setFocusTraversable(true);
+                root.requestFocus();
+            }
         }
          
         //setting the images
@@ -240,7 +257,7 @@ public class OverworldController implements Initializable {
         
         map = Map.game.get(Player.level-1); 
         
-        progBar.setProgress(Player.level/10.0);
+        progBar.setProgress(Player.level/9.0);
         
         setup(Player.coordX/4 + 1);
         

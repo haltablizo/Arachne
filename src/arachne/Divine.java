@@ -30,6 +30,10 @@ public class Divine extends NPC {
         this.reward = e; 
     }
     
+    public Divine(String name) {
+        super(name); 
+    }
+    
     public Equipment getReward() {
         return this.reward; 
     }

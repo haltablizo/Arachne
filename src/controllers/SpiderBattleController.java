@@ -115,7 +115,6 @@ public class SpiderBattleController implements Initializable {
     private void openInv(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Inventory.fxml"));
         Parent root = loader.load();
-        OverworldController controller = loader.getController();
 
         Scene subjectScene = new Scene(root);
         Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -134,10 +133,11 @@ public class SpiderBattleController implements Initializable {
         statsAlert.setTitle("Battle stats");
         statsAlert.setHeaderText("Player Stats for Arachne");
 
-        String playerStatText = "Name: " + Player.getName() + "\n"
+        String playerStatText = "Name: Arachne" + "\n"
                 + "Current HP/Max HP: " + Player.getHp() + "/" + Player.getMaxHp() + "\n"
                 + "Attack: " + Player.getAtk() + "\n"
-                + "Defense: " + Player.getDef();
+                + "Defense: " + Player.getDef()
+                + "Spider hp: " + spid.getHp(); 
 
         statsAlert.setContentText(playerStatText);
         statsAlert.showAndWait();

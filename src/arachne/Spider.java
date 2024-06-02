@@ -12,13 +12,17 @@ public class Spider {
     private int maxHp; 
     private int amtOfSilk; 
     
-    public Spider(String n, int a, int m, int amt) {
+    public Spider(String n, int m, int a, int amt) {
         this.name = n; 
         this.atk = a; 
         this.hp = m; 
         this.maxHp = m; 
         this.amtOfSilk = amt; 
 
+    }
+    
+    public void resetHp() {
+        this.hp = this.maxHp; 
     }
     
     public String getName() {

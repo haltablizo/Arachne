@@ -4,9 +4,9 @@ package arachne;
 public class Coat extends Equipment {
     private int defBonus;  
     
-    public Coat(String name, String fn, int defBonus) {
+    public Coat(String name, String fn, int x) {
         super(name, fn);
-        this.defBonus = defBonus; 
+        this.defBonus = Player.getDef()*x; 
     }
     
     public int getDefBonus(){
