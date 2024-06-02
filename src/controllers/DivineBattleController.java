@@ -53,23 +53,23 @@ public class DivineBattleController implements Initializable {
         switch (turn-1) {
             case 0: 
                 firstCard.setImage(new Image("/images/divineCards/" + cardImgs[cardValue-1], 100, 125, false, false));
-                firstOppCard.setImage(new Image("/images/placeholder.jpg", 100, 125, false, false));
+                firstOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
                 break; 
             case 1: 
                 secondCard.setImage(new Image("/images/divineCards/" + cardImgs[cardValue-1], 100, 125, false, false));
-                secondOppCard.setImage(new Image("/images/placeholder.jpg", 100, 125, false, false));
+                secondOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
                 break; 
             case 2: 
                 thirdCard.setImage(new Image("/images/divineCards/" + cardImgs[cardValue-1], 100, 125, false, false));
-                thirdOppCard.setImage(new Image("/images/placeholder.jpg", 100, 125, false, false));
+                thirdOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
                 break; 
             case 3: 
                 fourthCard.setImage(new Image("/images/divineCards/" + cardImgs[cardValue-1], 100, 125, false, false));
-                fourthOppCard.setImage(new Image("/images/placeholder.jpg", 100, 125, false, false));
+                fourthOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
                 break; 
             case 4: 
                 fifthCard.setImage(new Image("/images/divineCards/" + cardImgs[cardValue-1], 100, 125, false, false));
-                fifthOppCard.setImage(new Image("/images/placeholder.jpg", 100, 125, false, false));
+                fifthOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
                 break; 
             
             }

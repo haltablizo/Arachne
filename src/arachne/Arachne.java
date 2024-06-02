@@ -300,7 +300,7 @@ public class Arachne extends Application {
         };
         Map levelNine = new Map(ninthMap);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/DivineBattle.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         
