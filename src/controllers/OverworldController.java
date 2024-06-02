@@ -3,6 +3,7 @@ package controllers;
 
 import arachne.Divine;
 import arachne.Human;
+import arachne.Inventory;
 import arachne.Key;
 import arachne.Map;
 import arachne.Player;
@@ -74,6 +75,7 @@ public class OverworldController implements Initializable {
     
     @FXML 
     private void movement(KeyEvent event) throws IOException {
+        System.out.println("SILK: " + Inventory.silk);
         grid.getChildren().remove(im);
         
         KeyCode upKey = KeyCode.valueOf(Key.up);
@@ -152,7 +154,7 @@ public class OverworldController implements Initializable {
             root.requestFocus();
         }
                 
-        if (s instanceof Human && Map.humanFirst == true) {
+        if (Player.coordX==0 && Player.coordY==2 && Map.humanFirst == true) {
             dialogue();
             Map.humanFirstChecker();
             setup((Player.coordX) / 4 + 1);
@@ -168,12 +170,9 @@ public class OverworldController implements Initializable {
             thisStage.hide();
             thisStage.setScene(subjectScene);
             thisStage.show();
-            
-            
-
         }
         
-        if (s instanceof Human && Map.humanSecond == true) {
+        if (Player.coordX==Player.level*4-1 && Player.coordY==0 && Map.humanSecond == true) {
             dialogue();
         }
         
@@ -257,7 +256,7 @@ public class OverworldController implements Initializable {
         
         map = Map.game.get(Player.level-1); 
         
-        progBar.setProgress(Player.level/9.0);
+        progBar.setProgress((Player.level-1)/9.0);
         
         setup(Player.coordX/4 + 1);
         

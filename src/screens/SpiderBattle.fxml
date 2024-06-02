@@ -69,10 +69,10 @@
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <ProgressBar prefWidth="200.0" progress="1.0" />
-            <ImageView fitHeight="450.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true">
+            <ProgressBar fx:id="arachneHp" prefWidth="200.0" progress="1.0" />
+            <ImageView fitHeight="477.0" fitWidth="511.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/placeholder.jpg" />
+                  <Image url="@../images/arachne.png" />
                </image>
             </ImageView>
          </children>
@@ -89,7 +89,7 @@
                   <Insets bottom="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <ProgressBar prefWidth="200.0" progress="1.0" />
+            <ProgressBar fx:id="spiderHp" prefWidth="200.0" progress="1.0" />
             <ImageView fx:id="opponentIcon" fitHeight="450.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </VBox>

@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Inventory;
 import arachne.Map;
 import arachne.Player;
 import java.io.IOException;
@@ -13,12 +14,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class WinScreenController implements Initializable {
     
+    private int silk; 
+    
+    @FXML Label reward;
+    
+    public void setSilk(int s) {
+        silk =  s; 
+        reward.setText(" Reward: +" + silk + " silk"); 
+    }
+    
     @FXML
     private void move(ActionEvent event) throws IOException {
+        Inventory.pickUpSilk(silk); 
         Map.game.get(Player.level-1)[Player.coordX][Player.coordY] = 0;
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
@@ -35,6 +47,7 @@ public class WinScreenController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         
     }    
     

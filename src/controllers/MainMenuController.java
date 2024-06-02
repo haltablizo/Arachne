@@ -28,19 +28,33 @@ public class MainMenuController implements Initializable {
        
     @FXML 
     private void newGame (ActionEvent event) throws IOException {
-                
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
-        Parent root = loader.load(); 
-        OverworldController controller = loader.getController();
-        
-        Scene subjectScene = new Scene(root);
-        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        thisStage.hide();
-        thisStage.setScene(subjectScene);
-        thisStage.show();
-        
-        root.setFocusTraversable(true);
-        root.requestFocus();
+        if (Player.level != 9) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+            Parent root = loader.load();
+            OverworldController controller = loader.getController();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        } 
+        else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/FinalLevel.fxml"));
+            Parent root = loader.load();
+
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        }
     }
     @FXML
     private void exitGame (ActionEvent event) throws IOException {
@@ -63,7 +77,7 @@ public class MainMenuController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadGameButton.setDisable(true);
+
     }    
     
 }

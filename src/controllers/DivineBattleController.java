@@ -38,7 +38,9 @@ public class DivineBattleController implements Initializable {
     @FXML ImageView firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard;
     ImageView[] oppCards = {firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard};
     
-    @FXML Button hitButton, standButton; 
+    @FXML Button hitButton, standButton;
+    
+    private int index;
     
     private boolean win = false; 
     
@@ -129,10 +131,16 @@ public class DivineBattleController implements Initializable {
     
     @FXML
     private void exit(ActionEvent event) throws IOException  {
-                
+        Player.hand.clear();
+        tyche.hand.clear(); 
+        tyche.deck.clear(); 
+        
         if (win) {
             Map.divineChecker(); 
         }
+        
+        Player.coordX = Player.level*4 - 2; 
+        Player.coordY = 1; 
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
         Parent root = loader.load();

@@ -12,11 +12,9 @@ public class Inventory {
     public static LinkedHashMap<Powerup, Integer> invPowerup = new LinkedHashMap<>(9, (float) 0.75, true);
     public static LinkedHashMap<Equipment, Integer> invEquipment = new LinkedHashMap<>(9, (float) 0.75, true);
 
+    public static int silk;
     
-
-    private static int silk;
-    
-    public void pickUpSilk(int amt) {
+    public static void pickUpSilk(int amt) {
         silk += amt; 
     }
     

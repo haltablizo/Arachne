@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -31,7 +32,7 @@ public class SpiderBattleController implements Initializable {
     @FXML ImageView opponentIcon; 
     private Spider spid; 
     private int index;
-    
+    @FXML ProgressBar spiderHp, arachneHp;
     
     public void setSpider(Spider s) {
         this.spid = s;
@@ -43,11 +44,15 @@ public class SpiderBattleController implements Initializable {
     
     @FXML void attack(ActionEvent event) throws InterruptedException, IOException {
         boolean[] x = Player.attack(spid); 
+        arachneHp.setProgress((float) Player.getHp()/Player.getMaxHp());
+        spiderHp.setProgress((float) spid.getHp()/spid.getMaxHp());
+        
         if (x[0] && !x[1]) {
             Map.incSpid();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/WinScreen.fxml")); 
             Parent root = loader.load(); 
             WinScreenController controller = loader.getController();
+            controller.setSilk(spid.getAmtOfSilk()); 
             
             Scene subjectScene = new Scene(root);
             Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -130,14 +135,16 @@ public class SpiderBattleController implements Initializable {
     @FXML
     private void stat(ActionEvent event) {
         Alert statsAlert = new Alert(Alert.AlertType.INFORMATION);
-        statsAlert.setTitle("Battle stats");
-        statsAlert.setHeaderText("Player Stats for Arachne");
+        statsAlert.setHeaderText("Battle Stats");
 
-        String playerStatText = "Name: Arachne" + "\n"
-                + "Current HP/Max HP: " + Player.getHp() + "/" + Player.getMaxHp() + "\n"
-                + "Attack: " + Player.getAtk() + "\n"
-                + "Defense: " + Player.getDef()
-                + "Spider hp: " + spid.getHp(); 
+        String playerStatText = "Arachne" + "\n\t"
+                + "Current HP/Max HP: " + Player.getHp() + "/" + Player.getMaxHp() + "\n\t"
+                + "Attack: " + Player.getAtk() + "\n\t"
+                + "Defense: " + Player.getDef() + "\n\n"
+                + "Spider name: " + spid.getName() + "\n\t"
+                + "Current HP/Max HP: " + spid.getHp() + "/" + spid.getMaxHp() + "\n\t"
+                + "Attack: " + spid.getAtk() + "\n\t"
+                + "Silk dropped: " + spid.getAmtOfSilk();               ; 
 
         statsAlert.setContentText(playerStatText);
         statsAlert.showAndWait();
@@ -145,7 +152,7 @@ public class SpiderBattleController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       arachneHp.setProgress((float) Player.getHp()/Player.getMaxHp());
     }    
     
 }

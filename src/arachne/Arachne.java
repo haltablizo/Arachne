@@ -52,7 +52,7 @@ public class Arachne extends Application {
         Needle thunderbolt = new Needle("Thunderbolt", "/images/placeholder.jpg", 88);
         Needle scepter = new Needle("Scepter", "/images/placeholder.jpg", 100);
         
-        Spider s1 = new Spider("Basic spider", 10,1,5); //level 1 atk, hp, amt
+        Spider s1 = new Spider("Basic spider", 10,1,1); //level 1 hp, atk, amt
         Human p1 = new Human("Priam", figs);
         Divine d1 = new Divine("Hermes", caduceus); 
         
@@ -64,7 +64,7 @@ public class Arachne extends Application {
         };
         Map levelOne = new Map(firstMap);
         
-        Spider s2 = new Spider("Giant Tarantula", 25,3,0); //level 2
+        Spider s2 = new Spider("Giant Tarantula", 25,3,5); //level 2
         Human p2 = new Human("Atlanta", lotus); 
         Divine d2 = new Divine("Apollo", arrow); 
         
@@ -80,7 +80,7 @@ public class Arachne extends Application {
         };
         Map levelTwo = new Map(secondMap);
         
-        Spider s3 = new Spider("Venomous Widow", 30,3,0); //level 3
+        Spider s3 = new Spider("Venomous Widow", 30,3,15); //level 3
         Human p3 = new Human("Silenus", wine);
         Divine d3 = new Divine("Dionysus", thyrsus); 
         
@@ -102,7 +102,7 @@ public class Arachne extends Application {
         };
         Map levelThree = new Map(thirdMap);
         
-        Spider s4 = new Spider("Shadow Crawler", 70,5,0); //level 4
+        Spider s4 = new Spider("Shadow Crawler", 70,5,20); //level 4
         Human p4 = new Human("Celeus", wheat);
         Divine d4 = new Divine("Demeter", sickle); 
         
@@ -129,7 +129,7 @@ public class Arachne extends Application {
         };
         Map levelFour = new Map(fourthMap);
         
-        Spider s5 = new Spider("Rock Spider", 100,1,0); //level 5
+        Spider s5 = new Spider("Rock Spider", 100,1,25); //level 5
         Human p5 = new Human("Perseus", nectar);
         Divine d5 = new Divine("Poseidon", trident); 
         
@@ -162,7 +162,7 @@ public class Arachne extends Application {
         Map levelFive = new Map(fifthMap);
         
         
-        Spider s6 = new Spider("Ghost Spider", 10,50,0); //level 6
+        Spider s6 = new Spider("Ghost Spider", 10,50,30); //level 6
         Human p6 = new Human("Charon", pomegranate);
         Divine d6 = new Divine("Hades", bident); 
         
@@ -200,7 +200,7 @@ public class Arachne extends Application {
         Map levelSix = new Map(sixthMap);
         
         
-        Spider s7 = new Spider("Ice Web Spider", 30,30,0); //level 7
+        Spider s7 = new Spider("Ice Web Spider", 30,30,35); //level 7
         Human p7 = new Human("Heracles", ambrosia);
         Divine d7 = new Divine("Zeus", thunderbolt); 
                 
@@ -242,7 +242,7 @@ public class Arachne extends Application {
         };
         Map levelSeven = new Map(seventhMap);
         
-        Spider s8 = new Spider("Acid Spider", 50,50,0); //level 8
+        Spider s8 = new Spider("Acid Spider", 50,50,40); //level 8
         Human p8 = new Human("Paris", goldenApple);
         Divine d8 = new Divine("Hera", scepter);         
         
@@ -300,7 +300,7 @@ public class Arachne extends Application {
         };
         Map levelNine = new Map(ninthMap);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/screens/DivineBattle.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/MainMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         
