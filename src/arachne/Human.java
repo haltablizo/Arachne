@@ -6,7 +6,7 @@ public class Human extends NPC {
     
     public Human(String name, Powerup p) {
         super(name); 
-        this.reward = p; 
+        this.reward = p;
     }
     
     public void reward() {
