@@ -2,30 +2,22 @@
 package controllers;
 
 import arachne.Divine;
-import arachne.Equipment;
-import arachne.Map;
-import arachne.Player;
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
+import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 public class AthenaBattleController implements Initializable {
-
+    
     Divine Athena =  new Divine("Athena");
     
     @FXML ImageView firstCard, secondCard, thirdCard, fourthCard, fifthCard;
@@ -59,8 +51,8 @@ public class AthenaBattleController implements Initializable {
             case 3: 
                 fourthCard.setImage(new Image("/images/divineCards/" + cardImgs[6], 100, 125, false, false));
                 fourthOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
-                end(); 
-                athena.setImage(new Image("/images/divine/athenaEnd.png", 250, 250, false, false)); 
+                end();
+
                 break;        
             }
         turn++; 

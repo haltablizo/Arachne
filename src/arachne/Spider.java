@@ -11,14 +11,19 @@ public class Spider {
     private int hp;
     private int maxHp; 
     private int amtOfSilk; 
+    private String filename; 
     
-    public Spider(String n, int m, int a, int amt) {
+    public Spider(String n, int m, int a, int amt, String fn) {
         this.name = n; 
         this.atk = a; 
         this.hp = m; 
         this.maxHp = m; 
         this.amtOfSilk = amt; 
-
+        this.filename = fn;
+    }
+    
+    public String getFn() {
+        return this.filename; 
     }
     
     public void resetHp() {

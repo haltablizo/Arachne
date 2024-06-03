@@ -19,13 +19,12 @@ public class Player {
     public static int coordY = 0; 
     
     
-    public static int level = 9; 
+    public static int level = 1; 
     
-    public static List<Integer> hand = new ArrayList(); 
+    public static List<Integer> hand = new ArrayList();
     
-
-    public static void setName(String n) {
-        name = n; 
+    public static void setHp(int h) {
+        hp = h; 
     }
     
     public static void setCoat(Coat c) {
@@ -109,7 +108,7 @@ public class Player {
     }
     public static void removeDef() {
         curDef = false; 
-    }
+    } 
     
     public static void use(Powerup p, int amt) {
         pStorage.use(p, amt); 

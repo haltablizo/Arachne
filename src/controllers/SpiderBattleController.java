@@ -1,6 +1,7 @@
 
 package controllers;
 
+import arachne.Arachne;
 import arachne.Map;
 import arachne.Player;
 import arachne.Spider;
@@ -26,16 +27,17 @@ import javafx.stage.Stage;
 
 
 public class SpiderBattleController implements Initializable {
-
-
     @FXML Button runButton, atkButton; 
     @FXML ImageView opponentIcon; 
     private Spider spid; 
     private int index;
     @FXML ProgressBar spiderHp, arachneHp;
     
+    private int arachneCurrentHp; 
+    
     public void setSpider(Spider s) {
         this.spid = s;
+        opponentIcon.setImage(new Image(spid.getFn(), 250, 250, false, false)); 
     }
     
     public void setIndex(int x) {
@@ -64,6 +66,9 @@ public class SpiderBattleController implements Initializable {
             root.requestFocus();
         }
         else if (x[1]) {
+            spid.resetHp();
+            Player.setHp(arachneCurrentHp);
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/GameOverScreen.fxml")); 
             Parent root = loader.load(); 
             GameOverScreenController controller = loader.getController();
@@ -101,6 +106,9 @@ public class SpiderBattleController implements Initializable {
         }
         
         System.out.println(Player.coordX + ", " + Player.coordY); 
+        
+        spid.resetHp(); 
+        Player.setHp(arachneCurrentHp); 
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml")); 
         Parent root = loader.load(); 
@@ -153,6 +161,7 @@ public class SpiderBattleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        arachneHp.setProgress((float) Player.getHp()/Player.getMaxHp());
+       arachneCurrentHp = Player.getHp(); 
     }    
     
 }

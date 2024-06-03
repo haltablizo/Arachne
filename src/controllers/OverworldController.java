@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -155,15 +156,17 @@ public class OverworldController implements Initializable {
         }
                 
         if (Player.coordX==0 && Player.coordY==2 && Map.humanFirst == true) {
-            dialogue();
+            firstDialogue();
             Map.humanFirstChecker();
             setup((Player.coordX) / 4 + 1);
         }
         
         if (s instanceof Divine && Map.divine == true) {
-            
+            Divine a = (Divine) s; 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/DivineBattle.fxml"));
             Parent root = loader.load();
+            DivineBattleController controller = loader.getController();
+            controller.setDivine(a); 
 
             Scene subjectScene = new Scene(root);
             Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -173,7 +176,7 @@ public class OverworldController implements Initializable {
         }
         
         if (Player.coordX==Player.level*4-1 && Player.coordY==0 && Map.humanSecond == true) {
-            dialogue();
+            secondDialogue();
         }
         
         if (s instanceof Divine && Map.portal == true) {
@@ -216,10 +219,25 @@ public class OverworldController implements Initializable {
         grid.add(im, Player.coordX%4, Player.coordY);
     }    
     
-    private void dialogue() {
+    private void firstDialogue() {        
         Alert ac = new Alert(AlertType.INFORMATION);
-        ac.setTitle("Jadwon");
+        ac.setTitle("Quest");
+        ac.setContentText("Please kill " + Player.level + " spiders"); 
         ac.showAndWait();
+    }
+    
+    private void secondDialogue() {        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Would You Like To Save Your Console Output?");
+        alert.setContentText("Please choose an option.");
+
+        ButtonType yesButton = new ButtonType("ACCEPT");
+        ButtonType noButton = new ButtonType("REFUSE");
+
+        alert.getButtonTypes().setAll(yesButton, noButton);
+        
+        alert.showAndWait();
+        Player.coordX--; 
     }
     
     private void setup(int x) {

@@ -4,9 +4,10 @@ package arachne;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Divine extends NPC {
-    private Equipment reward; 
-    private Needle owned; 
+public class Divine extends NPC { 
+    private Needle needle; 
+    private Coat coat; 
+    private String filename; 
 
     public List<Integer> hand = new ArrayList(); 
     
@@ -25,17 +26,27 @@ public class Divine extends NPC {
     }
     
     
-    public Divine(String name, Equipment e) {
+    public Divine(String name, Coat c, Needle n, String s) {
         super(name); 
-        this.reward = e; 
+        this.coat = c; 
+        this.needle = n; 
+        this.filename = s; 
     }
     
     public Divine(String name) {
         super(name); 
     }
     
-    public Equipment getReward() {
-        return this.reward; 
+    public Coat getCoatReward() {
+        return this.coat; 
+    }
+    
+    public Needle getNeedleReward() {
+        return this.needle; 
+    }
+    
+    public String getFn() {
+        return this.filename; 
     }
     
     public int getHandSum() {

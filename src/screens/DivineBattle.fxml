@@ -147,7 +147,7 @@
             </BorderPane>
          </left>
          <center>
-            <ImageView fitHeight="690.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="divineImage" fitHeight="690.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../images/placeholder.jpg" />
                </image>

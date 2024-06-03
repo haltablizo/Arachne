@@ -1,9 +1,11 @@
 
 package controllers;
 
+import arachne.Coat;
 import arachne.Divine;
 import arachne.Equipment;
 import arachne.Map;
+import arachne.Needle;
 import arachne.Player;
 import java.io.IOException;
 import java.net.URL;
@@ -26,16 +28,25 @@ import javafx.stage.Stage;
 
 public class DivineBattleController implements Initializable {
 
-    Equipment e = new Equipment("E", "/images/equipmentIcons/iel.png"); 
-    Divine tyche =  new Divine("Tyche", e);
+    Needle needle; 
+    Coat coat; 
+    Divine divine; 
 
+    public void setDivine(Divine d) {
+        divine = d; 
+        coat = d.getCoatReward();         
+        needle = d.getNeedleReward();       
+        divine.createDeck();
+        divineImage.setImage(new Image(divine.getFn(), 250, 250, false, false)); 
+    }
+    
     List<Integer> images ; 
     
     @FXML ImageView firstCard, secondCard, thirdCard, fourthCard, fifthCard;
     String[] cardImgs = {"cardOne.png", "cardTwo.png", "cardThree.png", "cardFour.png", "cardFive.png", 
     "cardSix.png", "cardSeven.png", "cardEight.png", "cardNine.png", "cardTen.png"}; 
     
-    @FXML ImageView firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard;
+    @FXML ImageView firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard, divineImage;
     ImageView[] oppCards = {firstOppCard, secondOppCard, thirdOppCard, fourthOppCard, fifthOppCard};
     
     @FXML Button hitButton, standButton;
@@ -47,7 +58,7 @@ public class DivineBattleController implements Initializable {
     @FXML
     private void hit(ActionEvent event) {
         standButton.setDisable(false);
-        int[] returnVal = Player.hit(tyche);
+        int[] returnVal = Player.hit(divine);
         int cardValue = returnVal[0]; 
         int turn = returnVal[1];
         int bust = returnVal[2]; 
@@ -89,11 +100,11 @@ public class DivineBattleController implements Initializable {
     }
     
     public void stand() {
-        int status = Player.endDivineGame(tyche); 
+        int status = Player.endDivineGame(divine); 
         switch (status) {
             case 0: 
                 win = false; 
-                dialogue("BUST!");
+                dialogue("LOSE!");
                 break;
             case 1: 
                 win = true; 
@@ -108,15 +119,15 @@ public class DivineBattleController implements Initializable {
     
     private void end() {
                 //show cards 
-        if (Player.hand.size()>=1) firstOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(0)-1], 100, 125, false, false));
-        if (Player.hand.size()>=2) secondOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(1)-1], 100, 125, false, false));
-        if (Player.hand.size()>=3) thirdOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(2)-1], 100, 125, false, false));
-        if (Player.hand.size()>=4) fourthOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(3)-1], 100, 125, false, false));
-        if (Player.hand.size()>=5) fifthOppCard.setImage(new Image("/images/divineCards/" + cardImgs[tyche.hand.get(4)-1], 100, 125, false, false));
+        if (Player.hand.size()>=1) firstOppCard.setImage(new Image("/images/divineCards/" + cardImgs[divine.hand.get(0)-1], 100, 125, false, false));
+        if (Player.hand.size()>=2) secondOppCard.setImage(new Image("/images/divineCards/" + cardImgs[divine.hand.get(1)-1], 100, 125, false, false));
+        if (Player.hand.size()>=3) thirdOppCard.setImage(new Image("/images/divineCards/" + cardImgs[divine.hand.get(2)-1], 100, 125, false, false));
+        if (Player.hand.size()>=4) fourthOppCard.setImage(new Image("/images/divineCards/" + cardImgs[divine.hand.get(3)-1], 100, 125, false, false));
+        if (Player.hand.size()>=5) fifthOppCard.setImage(new Image("/images/divineCards/" + cardImgs[divine.hand.get(4)-1], 100, 125, false, false));
         
         Player.hand.clear();
-        tyche.hand.clear(); 
-        tyche.deck.clear(); 
+        divine.hand.clear(); 
+        divine.deck.clear(); 
         
         //disable buttons
         hitButton.setDisable(true); 
@@ -125,15 +136,15 @@ public class DivineBattleController implements Initializable {
     
     private void dialogue(String s) {
         Alert ac = new Alert(Alert.AlertType.INFORMATION);
-        ac.setTitle(s);
+        ac.setHeaderText(s);
         ac.showAndWait();
     }
     
     @FXML
     private void exit(ActionEvent event) throws IOException  {
         Player.hand.clear();
-        tyche.hand.clear(); 
-        tyche.deck.clear(); 
+        divine.hand.clear(); 
+        divine.deck.clear(); 
         
         if (win) {
             Map.divineChecker(); 
@@ -154,8 +165,8 @@ public class DivineBattleController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tyche.createDeck(); 
         standButton.setDisable(true);
+       
     }    
     
 }

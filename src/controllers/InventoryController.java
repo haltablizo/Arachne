@@ -90,7 +90,7 @@ public class InventoryController implements Initializable {
         
         itemImage.setImage(img);
         itemName.setText(key.getName());        
-        itemDesc.setText("test");
+        itemDesc.setText(key.getDesc());
 
         useButton.setVisible(true);
         dropButton.setVisible(true);       

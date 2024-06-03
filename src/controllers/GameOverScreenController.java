@@ -59,20 +59,6 @@ public class GameOverScreenController implements Initializable {
         root.requestFocus();
     }
     
-    @FXML
-    private void tryAgain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/SpiderBattle.fxml"));
-        Parent root = loader.load();
-        SpiderBattleController controller = loader.getController();
-        controller.setSpider(sp);
-
-        Scene subjectScene = new Scene(root);
-        Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        thisStage.hide();
-        thisStage.setScene(subjectScene);
-        thisStage.show();
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
