@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -53,12 +54,16 @@ public class OverworldController implements Initializable {
     Image spid = new Image("/images/spiderIcon.png", 250, 250, false, false);
     ImageView sp = new ImageView(spid); 
     
-    Image hum = new Image("/images/placeholder.jpg", 250, 250, false, false);
+    Image divine = new Image("/images/divineIcon.png", 250, 250, false, false);
+    ImageView div = new ImageView(divine); 
+    
+    Image hum = new Image("/images/human/" + Player.level + ".png", 250, 250, false, false);
     ImageView h = new ImageView(hum); 
     
     Image portal = new Image("/images/divinePlaceholder.png", 250, 250, false, false);
     ImageView p = new ImageView(portal); 
     
+    boolean claimed = false; 
     
     @FXML ProgressBar progBar;
     
@@ -76,7 +81,6 @@ public class OverworldController implements Initializable {
     
     @FXML 
     private void movement(KeyEvent event) throws IOException {
-        System.out.println("SILK: " + Inventory.silk);
         grid.getChildren().remove(im);
         
         KeyCode upKey = KeyCode.valueOf(Key.up);
@@ -176,7 +180,8 @@ public class OverworldController implements Initializable {
         }
         
         if (Player.coordX==Player.level*4-1 && Player.coordY==0 && Map.humanSecond == true) {
-            secondDialogue();
+            Human human = (Human) s; 
+            secondDialogue(human, human.getReward().getPrice(), human.getReward().getName());
         }
         
         if (s instanceof Divine && Map.portal == true) {
@@ -226,17 +231,31 @@ public class OverworldController implements Initializable {
         ac.showAndWait();
     }
     
-    private void secondDialogue() {        
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText("Would You Like To Save Your Console Output?");
-        alert.setContentText("Please choose an option.");
-
-        ButtonType yesButton = new ButtonType("ACCEPT");
-        ButtonType noButton = new ButtonType("REFUSE");
-
-        alert.getButtonTypes().setAll(yesButton, noButton);
+    private void secondDialogue(Human h, int p, String name) { 
         
-        alert.showAndWait();
+        Alert alert = new Alert(AlertType.INFORMATION);
+        
+        if (!claimed) {
+            alert.setHeaderText("Would you like to trade your " + p + " silk for " + name);
+            alert.setContentText("Please choose an option.");
+
+            ButtonType acceptButton = new ButtonType("ACCEPT");
+            ButtonType refuseButton = new ButtonType("REFUSE");
+
+            alert.getButtonTypes().setAll(acceptButton, refuseButton);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == acceptButton) {
+                h.reward();
+                claimed = true; 
+            }
+        }
+        else {
+            alert.setHeaderText("You have already claimed your reward.");
+
+            alert.showAndWait();
+        }
+
         Player.coordX--; 
     }
     
@@ -244,7 +263,7 @@ public class OverworldController implements Initializable {
         grid.getChildren().clear();
         
         if (x==1 && Map.humanFirst == true) {
-            grid.add(sp, 0, 2);
+            grid.add(h, 0, 2);
         }
         
         for (int i=0; i<3; i++) {
@@ -259,7 +278,7 @@ public class OverworldController implements Initializable {
         Map.spiderChecker();
         
         if(x==Player.level && Map.divine == true) {
-            grid.add(sp, 3, 1); 
+            grid.add(div, 3, 1); 
         }
         
         if (x==Player.level && Map.portal == true) {

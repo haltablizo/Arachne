@@ -14,29 +14,94 @@ public class Inventory {
 
     public static int silk;
     
+    /**
+     * 
+     * @param amt adds silk of amount amt to player's silk storage 
+     */
     public static void pickUpSilk(int amt) {
         silk += amt; 
     }
     
+    /**
+     * 
+     * @param item stores powerup item in inventory 
+     * @param amt amount of powerup stored 
+     */
     public static void store(Powerup item, int amt) {
         invPowerup.put(item, amt); 
     }
     
+    /**
+     * 
+     * @param item stores item of type equipment in inventory  
+     */
     public static void store(Equipment item) {
         invEquipment.put(item, 1); 
     }
     
+    /**
+     * 
+     * @param item discards item of class powerup 
+     * @param amt discards amt items 
+     */
     public void discard(Powerup item, int amt) {
-        invPowerup.put(item, (invPowerup.get(item)-amt)); 
+        invPowerup.remove(item);
     }
+    
+    /**
+     * 
+     * @param item discards item of superclass equipment
+     * @param amt discards amt items 
+     */
     public static void discard(Equipment item, int amt) {
-        invEquipment.put(item, (invEquipment.get(item)-amt)); 
+        invEquipment.remove(item); 
     }    
     
-    public void use(Powerup n, int amt) {
-        invPowerup.put(n, invPowerup.get(n)-amt); 
+    /**
+     * 
+     * @param n consumes n powerups
+     */
+    public static void use(Powerup n) {
+        if (invPowerup.get(n)-1==0) {
+            invPowerup.remove(n);
+        }
+        else {
+            invPowerup.put(n, invPowerup.get(n)-1) ; 
+        } 
+        Player.use(n, 1); 
+        
     }
-    public static void use(Equipment n, int amt) {
-        invEquipment.put(n, invEquipment.get(n)-amt); 
-    }    
+    
+    /**
+     * 
+     * @param n uses equipment n
+     * if previous coat or needle is equipped, it stores the previously equipped equipment 
+     */
+    public static void use(Equipment n) {
+
+        if (Player.getCoat() != null && n instanceof Coat) { 
+            Coat current = Player.getCoat(); 
+            invEquipment.put(current, 1); 
+            Player.setCoat((Coat) n);
+            invEquipment.remove(n);
+        }
+        if (Player.getNeedle() != null && n instanceof Needle) {
+            Needle current = Player.getNeedle(); 
+            invEquipment.put(current, 1); 
+            Player.setNeedle((Needle) n);
+            invEquipment.remove(n);
+
+        }
+        
+        else { 
+            if (n instanceof Coat) {
+                Player.setCoat((Coat) n);
+                invEquipment.remove(n);
+            }
+            else if (n instanceof Needle) { 
+                Player.setNeedle((Needle) n);
+                invEquipment.remove(n);
+            }
+        }
+    } 
 }

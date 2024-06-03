@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 public class AthenaBattleController implements Initializable {
     
@@ -52,7 +54,13 @@ public class AthenaBattleController implements Initializable {
                 fourthCard.setImage(new Image("/images/divineCards/" + cardImgs[6], 100, 125, false, false));
                 fourthOppCard.setImage(new Image("/images/divineCards/cardBack.png", 100, 125, false, false));
                 end();
-
+                athena.setImage(new Image("/images/divine/athenaEnd.png", 100, 125, false, false));
+                Alert ac = new Alert(Alert.AlertType.WARNING);
+                ac.setTitle("I CAN SEE YOU");
+                ac.setContentText("CHEATER");
+                ac.showAndWait();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
+        stage.close(); 
                 break;        
             }
         turn++; 

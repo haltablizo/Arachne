@@ -13,6 +13,9 @@ public class Divine extends NPC {
     
     public List<Integer> deck = new ArrayList(); 
     
+    /**
+     * creates a deck to be dealt to divine and player 
+     */
     public void createDeck() {
         for (int i=0; i<4; i++) {
             for (int j=1; j<=10; j++) {
@@ -21,6 +24,10 @@ public class Divine extends NPC {
         }
     }
     
+    /**
+     * 
+     * @param card add a card of value card to the hand of divine
+     */
     public void hit(int card) {
         hand.add(card);
     }

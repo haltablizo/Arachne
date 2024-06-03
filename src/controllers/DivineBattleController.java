@@ -4,6 +4,7 @@ package controllers;
 import arachne.Coat;
 import arachne.Divine;
 import arachne.Equipment;
+import arachne.Inventory;
 import arachne.Map;
 import arachne.Needle;
 import arachne.Player;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -135,9 +138,32 @@ public class DivineBattleController implements Initializable {
     }
     
     private void dialogue(String s) {
-        Alert ac = new Alert(Alert.AlertType.INFORMATION);
-        ac.setHeaderText(s);
-        ac.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if ("WIN!".equals(s)) {
+            alert.setHeaderText("Please claim your reward.");
+            alert.setContentText("Please choose an option.");
+
+            ButtonType needleButton = new ButtonType("NEEDLE");
+            ButtonType coatButton = new ButtonType("COAT");            
+            ButtonType refuseButton = new ButtonType("REFUSE");
+
+            alert.getButtonTypes().setAll(needleButton, coatButton, refuseButton);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == needleButton) {
+                Inventory.store(needle); 
+            }
+            else if (result.get() == coatButton) {
+                Inventory.store(coat);
+            }
+            else if (result.get() == refuseButton) {
+
+            }
+        }
+        else { 
+            alert.setHeaderText(s);
+            alert.showAndWait();
+        }
     }
     
     @FXML

@@ -104,9 +104,7 @@ public class SpiderBattleController implements Initializable {
                 Player.coordX--; 
                 break; 
         }
-        
-        System.out.println(Player.coordX + ", " + Player.coordY); 
-        
+                
         spid.resetHp(); 
         Player.setHp(arachneCurrentHp); 
         
@@ -137,7 +135,32 @@ public class SpiderBattleController implements Initializable {
 
         root.setFocusTraversable(true);
         root.requestFocus();
-               
+    }
+    
+    @FXML
+    private void defend(ActionEvent event) throws IOException {
+        Player.defend(spid); 
+        arachneHp.setProgress((float) Player.getHp()/Player.getMaxHp());
+        spiderHp.setProgress((float) spid.getHp()/spid.getMaxHp());
+       
+        if (Player.getHp() == 0) {
+            spid.resetHp();
+            Player.setHp(arachneCurrentHp);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/GameOverScreen.fxml")); 
+            Parent root = loader.load(); 
+            GameOverScreenController controller = loader.getController();
+            controller.setIndex(index); 
+            
+            Scene subjectScene = new Scene(root);
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+            thisStage.setScene(subjectScene);
+            thisStage.show();
+
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        }
     }
     
     @FXML

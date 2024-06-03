@@ -31,8 +31,8 @@ public class FinalLevelController implements Initializable {
     Image img = new Image("/images/charIcons/down.png", 250, 250, false, false); 
     ImageView im = new ImageView(img); 
     
-    Image portal = new Image("/images/divinePlaceholder.png", 250, 250, false, false);
-    ImageView p = new ImageView(portal);
+    Image divine = new Image("/images/divineIcon.png", 250, 250, false, false);
+    ImageView div = new ImageView(divine);
     
     private int index = 0; 
         
@@ -83,8 +83,6 @@ public class FinalLevelController implements Initializable {
         }
                     
         if (Player.coordX == 2 && Player.coordY == 1) {    
-            dialogue(); 
-            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/AthenaBattle.fxml"));
             Parent root = loader.load();
 
@@ -101,17 +99,11 @@ public class FinalLevelController implements Initializable {
         grid.add(im, Player.coordX%4, Player.coordY);
     }
     
-    private void dialogue() {
-        Alert ac = new Alert(AlertType.INFORMATION);
-        ac.setTitle("Jadwon");
-        ac.showAndWait();
-    }
-
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         grid.add(im, Player.coordX, Player.coordY); 
-        grid.add(p, 2, 1); 
+        grid.add(div, 2, 1); 
     }   
     
     

@@ -8,12 +8,12 @@ public class Powerup implements Storeable {
     private int atkInc; 
     private int maxHpInc;
     
+    private int price; 
+    
     private String desc; 
     private String filename; 
     
-
-    
-    public Powerup(String n, int h, int d, int a, int m, String desc, String fn) {
+    public Powerup(String n, int h, int d, int a, int m, String desc, String fn, int amt) {
         this.name = n; 
         this.hpInc = h;        
         this.defInc = d; 
@@ -21,10 +21,14 @@ public class Powerup implements Storeable {
         this.maxHpInc = m; 
         this.desc = desc; 
         this.filename = fn; 
+        this.price = amt; 
     }
     
     public String getName() { 
         return this.name; 
+    }
+    public int getPrice() {
+        return this.price; 
     }
     public int getHpInc() {
         return this.hpInc; 

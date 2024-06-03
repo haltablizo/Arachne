@@ -40,7 +40,7 @@
                         <Font size="40.0" />
                      </font>
                   </Text>
-                  <Button fx:id="closeInvButton" layoutX="914.0" layoutY="18.0" mnemonicParsing="false" text="Close">
+                  <Button fx:id="closeInvButton" layoutX="914.0" layoutY="18.0" mnemonicParsing="false" onAction="#close" text="Close">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Label fx:id="itemDesc" prefHeight="130.0" prefWidth="200.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Leo in vitae turpis massa sed elementum tempus." textAlignment="JUSTIFY" wrapText="true" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
-                              <Button fx:id="useButton" mnemonicParsing="false" text="Use">
+                              <Button fx:id="useButton" mnemonicParsing="false" onAction="#use" text="Use">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

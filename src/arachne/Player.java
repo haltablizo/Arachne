@@ -11,8 +11,8 @@ public class Player {
     private static int def = 1; //default def  
     private static int hp = 20; 
     private static int maxHp = 20; 
-    private static Coat coat; 
-    private static Needle needle; 
+    private static Coat coat = null; 
+    private static Needle needle = null; 
     private static boolean curDef = false; //checks if player is "defending" for this round 
     public static Inventory pStorage; 
     public static int coordX = 0; 
@@ -66,32 +66,34 @@ public class Player {
         return curDef; 
     }
     
+    /**
+     * 
+     * @param i reduce hp with amount i
+     */
     public static void reduceHP(int i){
         hp-=i;
     }
-
+    
+    /**
+     * 
+     * @param s attacks spider s
+     * @return boolean whether or not spider was defeated 
+     */
     public static boolean[] attack(Spider s) {
         
         boolean spidState = false; 
         boolean playerState = false; 
         
-        System.out.println("attacked"); 
         s.reduceHP(atk); 
 
         if (s.getHp() > 0) {
-            System.out.println("spid not dead"); 
             s.attack(); 
-            System.out.println("Spider: " + s.getHp()); 
-            System.out.println("Player: " + hp); 
             if (Player.getHp() == 0) {
                 playerState = true; 
             }
         } 
         
         else {
-            System.out.println("spid dead"); 
-            System.out.println("Spider: " + s.getHp()); 
-            System.out.println("Player: " + hp); 
             s.resetHp(); 
             //pStorage.pickUpSilk(s.getAmtOfSilk()); 
             spidState = true; 
@@ -102,28 +104,50 @@ public class Player {
 
     }
     
+    /**
+     * 
+     * @param s defends against spider s 
+     */
     public static void defend(Spider s) { 
         curDef = true; 
         s.attack();
     }
+    
+    /**
+     * removes def status after defending for the previous turn
+     */
     public static void removeDef() {
         curDef = false; 
     } 
     
+    /**
+     * 
+     * @param p use powerup p 
+     * @param amt uses amount amt of powerup p 
+     */
     public static void use(Powerup p, int amt) {
-        pStorage.use(p, amt); 
-        hp += p.getHpInc();         
+        if (hp + p.getHpInc() >= maxHp) hp = maxHp;  
+        else hp += p.getHpInc(); 
         def += p.getDefInc(); 
         atk += p.getAtkInc(); 
         maxHp += p.getMaxHpInc(); 
     }
     
+    /**
+     * 
+     * @return returns the sum of the player's hand during divine battle
+     */
     public static int getHandSum() {
         int s = 0; 
         for (int i : hand) s = s + i;
         return s; 
     }
  
+    /**
+     * 
+     * @param d uses a hit against divine d during their divine battle
+     * @return returns a integer array consisting of card value, current hand size, and bust status 
+     */
     public static int[] hit(Divine d) {
         int charCardIndex = (int)(Math.random() * (d.deck.size()));
         int tempCardVal = d.deck.get(charCardIndex); 
@@ -136,9 +160,6 @@ public class Player {
         d.hit(d.deck.get(oppCardIndex)); 
         d.deck.remove(oppCardIndex);
 
-        System.out.println("a"); 
-        System.out.println(String.join(" ", "" + hand));
-        System.out.println(String.join(" ", "" + d.hand));
         
         //if player deck size == 5, or sum exceeds 21 
         if (hand.size() == 5 || Player.getHandSum() > 21) {
@@ -160,6 +181,11 @@ public class Player {
         return state; 
     }
     
+    /**
+     * 
+     * @param d ending the divine game with divine d
+     * @return the status of the player. 2 for draw, 1 for win, and 0 for lose
+     */
     public static int endDivineGame(Divine d) { //happens when stand, or number of cards == 5, or bust 
         int status; //2 -> draw , 1 -> win, 0 -> lose
         if (Player.getHandSum() > 21 && d.getHandSum() > 21) status =  2; //both bust, draw
@@ -171,8 +197,6 @@ public class Player {
             else status = 0; //opp has higher value, opp wins 
         }
         
-        System.out.print(String.join(" ", "" + hand));
-        System.out.print(String.join(" ", "" + d.hand));
                  
         return status; 
     }

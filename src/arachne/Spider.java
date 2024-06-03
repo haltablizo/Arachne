@@ -26,10 +26,6 @@ public class Spider {
         return this.filename; 
     }
     
-    public void resetHp() {
-        this.hp = this.maxHp; 
-    }
-    
     public String getName() {
         return this.name; 
     }
@@ -47,10 +43,25 @@ public class Spider {
         return this.amtOfSilk; 
     }
     
+    /**
+     * 
+     * @param i amount of hp it reduces on itself 
+     */
     public void reduceHP(int i){
         this.hp-=i;
     }
+    
+    /**
+     * Resets its own hp to be battled again
+     */
+    public void resetHp() {
+        this.hp = this.maxHp; 
+    }
    
+    
+    /**
+     * Attacks player 
+     */
     public void attack() {
         if (Player.getCurDef()) {
             Player.reduceHP(this.getAtk()-Player.getDef());

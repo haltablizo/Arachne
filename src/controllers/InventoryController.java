@@ -4,6 +4,7 @@ package controllers;
 import arachne.Equipment;
 import arachne.Inventory;
 import static arachne.Inventory.invPowerup;
+import arachne.Player;
 import arachne.Powerup;
 import arachne.Spider;
 import arachne.Storeable;
@@ -37,7 +38,7 @@ public class InventoryController implements Initializable {
     
     @FXML GridPane potionGrid;
     
-    private boolean pt = false; 
+    private boolean pt = true; 
     private boolean wt = false; 
     private Powerup sp;
     private Equipment se; 
@@ -45,7 +46,14 @@ public class InventoryController implements Initializable {
     
     @FXML
     private void use(ActionEvent event) {
-        
+        if (pt==true) {
+            Inventory.use(sp);
+            potion();
+        }
+        else {
+            Inventory.use(se);
+            weapon(); 
+        }
     }
     
     @FXML 
@@ -208,6 +216,21 @@ public class InventoryController implements Initializable {
 
         useButton.setVisible(false);
         dropButton.setVisible(false);
+    }
+    
+    @FXML
+    public void close(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/screens/Overworld.fxml"));
+        Parent root = loader.load();
+
+        Scene subjectScene = new Scene(root);
+        Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisStage.hide();
+        thisStage.setScene(subjectScene);
+        thisStage.show();
+
+        root.setFocusTraversable(true);
+        root.requestFocus();
     }
     
     @Override
